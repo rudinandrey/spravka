@@ -1,0 +1,15 @@
+{
+    "name": "tatais/spravka",
+    "description": "Spravka 09",
+    "type": "project",
+    "require": {
+        "bcosca/fatfree": "^3.7"
+    },
+    "license": "Apache",
+    "authors": [
+        {
+            "name": "rudinandrey",
+            "email": "rudinandrey@yandex.ru"
+        }
+    ]
+}
