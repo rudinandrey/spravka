@@ -25,17 +25,15 @@
 		  </div>
 		</nav>
 	</div>
-	<main></main>
-	<div class="container">
-		<div class="col">
-			<div class="row">
-				<h1>Hello world 222</h1>
-			</div>
-		</div>
-	</div>
+	<div id="main"></div>
+	
 	
 
 	<script src="/js/jquery-3.5.0.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/riot.js"></script>
+	<script src="/js/route.min.js"></script>
+	<script src="/js/tags.js"></script>
+	<script src="/js/app.js"></script>
 </body>
 </html>
