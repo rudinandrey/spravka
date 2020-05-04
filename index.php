@@ -14,6 +14,7 @@ $f3->set("ROOT", ".");
 $f3->set("UI", "./ui/");
 
 $f3->route("GET /", "main->index");
+$f3->route("GET /login", "main->login");
 $f3->route("GET|POST /api/@method", "api->@method");
 
 $f3->run();
