@@ -26,6 +26,13 @@
 		</nav>
 	</div>
 	<main></main>
+	<div class="container">
+		<div class="col">
+			<div class="row">
+				<h1>Hello world</h1>
+			</div>
+		</div>
+	</div>
 	
 
 	<script src="/js/jquery-3.5.0.min.js"></script>
