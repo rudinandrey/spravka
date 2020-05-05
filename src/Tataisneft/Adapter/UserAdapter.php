@@ -35,6 +35,17 @@ class UserAdapter {
         }
     }
 
+    public function findByToken($token) {
+        try {
+            $sql = "SELECT * FROM user WHERE token = :token;";
+            $users = $this->db->exec($sql, ["token"=>$token]);
+            if(isset($users) && count($users)== 1) return new UserEntity($users[0]);
+            throw new \Exception("Пользователь не найден");
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+    }
+
     public function create($user) {
         try {
             $this->validationUser($user);
