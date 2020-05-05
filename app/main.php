@@ -5,4 +5,8 @@ class main extends Controller {
 		$view = new view();
 		echo $view->render("_layout.php");
 	}
+
+    public function test() {
+        echo "test";
+    }
 }
