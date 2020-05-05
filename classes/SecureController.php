@@ -6,8 +6,8 @@ class SecureController {
         $this->f3 = $f3;
     }
 
-    public function beforeRoute($f3) {
-        $token = $f3->get("COOKIE.token");
+    public function beforeRoute() {
+        $token = $this->f3->get("COOKIE.token");
         if($token == null) header("Location: /login");
     }
 
