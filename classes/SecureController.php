@@ -8,7 +8,7 @@ class SecureController {
 
     public function beforeRoute($f3) {
         $token = $f3->get("COOKIE.token");
-        if($token == null) $f3->reroute("/login");
+        if($token == null) header("Location: /login");
     }
 
     public function getResult($result, $error = 0) {
