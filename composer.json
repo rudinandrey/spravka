@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Tataisneft\\Spravka\\" : "src/Tataisneft/Spravka/",
+            "" : "src/",
             "Tests\\": "tests/"
         }
     }
