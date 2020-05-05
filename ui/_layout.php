@@ -33,7 +33,7 @@
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/riot.js"></script>
 	<script src="/js/route.min.js"></script>
-	<script src="/js/tags.js"></script>
+	<script src="/js/tags.js?seq=1"></script>
 	<script src="/js/app.js"></script>
 </body>
 </html>
