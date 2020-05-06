@@ -26,7 +26,7 @@ class UserAdapter {
     public function findById($id) {
         try {
             if($id <= 0) throw new \Exception("Неподходящий ID пользователя, должно быть число от 1 и выше");
-            $sql = "SELECT * FROM user WHERE id = :id";
+            $sql = "SELECT * FROM user WHERE user_id = :id";
             $users = $this->db->exec($sql, ["id"=>$id]);
             if(isset($users) && count($users)== 1) return new UserEntity($users[0]);
             throw new \Exception("Пользователь не найден");
