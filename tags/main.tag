@@ -32,7 +32,10 @@
 		var self = this;
 
 		this.on("mount", function() {
-
+			opts.app.post("/api/cities", {}, function(data) {
+				opts.cities = data.result.cities;
+				self.update();
+			});
 		});
 	</script>
 </main>
