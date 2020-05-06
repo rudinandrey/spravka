@@ -1,6 +1,6 @@
 <main>
 	<div class="container">
-		<div class="row">
+		<div class="row form-group">
 			<div class="col-3">
 				<h3>Города</h3>
 			</div>
@@ -8,8 +8,8 @@
 				<h3>Справочник</h3>
 			</div>
 			<div class="col-3">
-				<a href="#" class="btn btn-secondary">Редактирование</a>
-				<a href="#" class="btn btn-secondary">Удаление</a>
+				<a href="#" class="btn btn-link" class="{opts.edit_mode ? 'edit_mode' : ''}">Редактирование</a>
+				<a href="#" class="btn btn-link" class="{opts.remove_mode ? 'remove_mode' : ''}">Удаление</a>
 			</div>
 		</div>
 		<div class="row form-group">
@@ -27,7 +27,7 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<table>
+						<table class="table">
 							<thead>
 							<tr>
 								<th>Абонент</th>
@@ -56,11 +56,25 @@
 			margin:0;
 		}
 
+		.edit_mode {
+			font-weight: bold;
+			color: white;
+			background-color: black;
+		}
+
+		.remove_mode {
+			font-weight: bold;
+			color: white;
+			background-color: black;
+		}
+
 	</style>
 
 	<script>
 		var self = this;
 		opts.selected_city = 0;
+		opts.edit_mode = false;
+		opts.remove_mode = false;
 
 		this.on("mount", function() {
 			opts.app.post("/api/cities", {}, function(data) {
