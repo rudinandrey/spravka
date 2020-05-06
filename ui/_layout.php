@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Справочая служба 09</title>
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/fonts/Blushes/stylesheet.css">
 	<link rel="stylesheet" href="/css/style.css">
