@@ -91,7 +91,11 @@
 
 		this.btn_edit_mode = function(e) {
 			e.preventDefault();
-			opts.edit_mode == true ? false : true;
+			if(opts.edit_mode == true) {
+				opts.edit_mode = false;
+			} else {
+				opts.edit_mode = true;
+			}
 			self.update();
 		}
 
