@@ -1,13 +1,12 @@
 <?php
 
-class main {
+class main extends Controller {
 	public function index() {
 		$view = new view();
 		echo $view->render("_layout.php");
 	}
 
-	public function login() {
-		$view = new view();
-		echo $view->render("login.php");
-	}
+    public function test() {
+        echo "test";
+    }
 }
