@@ -12,7 +12,7 @@
 				<a href="#" class="btn btn-secondary">Удаление</a>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row form-group">
 			<div class="col-3">
 				<ul>
 					<li each={opts.cities} class="{opts.selected_city == city_id ? 'selected' : ''}">
@@ -20,8 +20,26 @@
 				</ul>
 			</div>
 			<div class="col-9">
-
+				<div class="row">
+					<div class="col"><input type="text" class="form-control"></div>
+					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг. F11</a></div>
+					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ. F12</a></div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<table>
+							<thead>
+							<tr>
+								<th>Абонент</th>
+								<th>Адрес</th>
+								<th>Телефон</th>
+							</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
 			</div>
+
 		</div>
 	</div>
 
