@@ -92,11 +92,13 @@
 		this.btn_edit_mode = function(e) {
 			e.preventDefault();
 			opts.edit_mode == true ? false : true;
+			self.update();
 		}
 
 		this.btn_remove_mode = function(e) {
 			e.preventDefault();
 			opts.remove_mode == true ? false : true;
+			self.update();
 		}
 	</script>
 </main>
