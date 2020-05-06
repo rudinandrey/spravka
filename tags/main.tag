@@ -15,7 +15,8 @@
 		<div class="row">
 			<div class="col-3">
 				<ul>
-					<li each={opts.cities} class="{opts.selected_city == city_id ? 'selected' : ''}" onclick={btn_select_city}>{city_name}</li>
+					<li each={opts.cities} class="{opts.selected_city == city_id ? 'selected' : ''}">
+						<a href="#" onclick={btn_select_city}>{city_name}</a></li>
 				</ul>
 			</div>
 			<div class="col-9">
@@ -25,10 +26,10 @@
 	</div>
 
 	<style>
-		.selected {
+		.selected > a {
 			font-weight: bold;
 			color: white;
-			backgroud-color: blue;
+			background-color: black;
 		}
 
 		ul {
