@@ -8,8 +8,8 @@
 				<h3>Справочник</h3>
 			</div>
 			<div class="col-3">
-				<a href="#" class="btn btn-link" class="{opts.edit_mode ? 'edit_mode' : ''}">Редактирование</a>
-				<a href="#" class="btn btn-link" class="{opts.remove_mode ? 'remove_mode' : ''}">Удаление</a>
+				<a href="#" class="btn btn-link" class="{opts.edit_mode ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
+				<a href="#" class="btn btn-link" class="{opts.remove_mode ? 'remove_mode' : ''}" onclick={btn_remove_mode}>Удаление</a>
 			</div>
 		</div>
 		<div class="row form-group">
@@ -20,12 +20,12 @@
 				</ul>
 			</div>
 			<div class="col-9">
-				<div class="row">
+				<div class="row form-group">
 					<div class="col"><input type="text" class="form-control"></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг. F11</a></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ. F12</a></div>
 				</div>
-				<div class="row">
+				<div class="row form-group">
 					<div class="col">
 						<table class="table">
 							<thead>
@@ -87,6 +87,16 @@
 			e.preventDefault();
 			opts.selected_city = e.item.city_id;
 			self.update();
+		}
+
+		this.btn_edit_mode = function(e) {
+			e.preventDefault();
+			opts.edit_mode == true ? false : true;
+		}
+
+		this.btn_remove_mode = function(e) {
+			e.preventDefault();
+			opts.remove_mode == true ? false : true;
 		}
 	</script>
 </main>
