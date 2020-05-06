@@ -1,6 +1,6 @@
 <?php
 
-class api extends Controller {
+class api extends SecureApiController {
 	public function ping() {
 		echo json_encode(["request"=>"pong"], JSON_UNESCAPED_UNICODE);
 	}
