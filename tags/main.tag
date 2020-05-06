@@ -85,7 +85,12 @@
 
 		this.btn_select_city = function(e) {
 			e.preventDefault();
-			opts.selected_city = e.item.city_id;
+			if(opts.selected_city == e.item.city_id) {
+				opts.selected_city = 0;
+			} else {
+				opts.selected_city = e.item.city_id;
+			}
+			
 			self.update();
 		}
 
