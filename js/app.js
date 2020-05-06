@@ -1,7 +1,9 @@
 route.start(true);
 
-var App = {
-    return: {
+function App() {
+    var self = this;
+
+    return {
         post: function(url, data, func) {
             $.ajax({
                 url: url,
@@ -14,11 +16,13 @@ var App = {
                 } else {
                     return response;
                 }
-            })
+            });
         }
     }
-};
+}
+
 var app = new App();
+
 var tags = {};
 tags['main'] = riot.mount("#main", "main", {app: app})[0];
 
