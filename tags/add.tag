@@ -7,10 +7,6 @@
             <div class="col-6">
                 <h3>Добавить</h3>
             </div>
-            <div class="col-3">
-                <a href="#" class="btn btn-link" class="{opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
-                <a href="#" class="btn btn-link" class="{opts.remove_mode == true ? 'remove_mode' : ''}" onclick={btn_remove_mode}>Удаление</a>
-            </div>
         </div>
         <div class="row form-group">
             <div class="col-3">
@@ -36,12 +32,38 @@
     </div>
 
     <style>
+        .selected > a {
+            font-weight: bold;
+            color: white;
+            background-color: black;
+        }
 
+        ul {
+            list-style-type: none;
+            padding:0;
+            margin:0;
+        }
+
+        .edit_mode {
+            font-weight: bold;
+            color: white;
+            background-color: black;
+        }
+
+        .remove_mode {
+            font-weight: bold;
+            color: white;
+            background-color: black;
+        }
+
+        .nav-link {
+            cursor: default;
+        }
     </style>
 
     <script>
         var self = this;
-
+        opts.selected_city = 0;
         opts.tab = 0;
 
         this.on("mount", function() {
@@ -50,17 +72,22 @@
                 $(this).tab('show')
             });
 
-
+            opts.app.post("/api/cities", {}, function(data) {
+                opts.cities = data.result.cities;
+                self.update();
+            });
         });
 
 
         this.mountPanel = function () {
             switch (opts.tab) {
                 case 0:
-                    tags['panel'] = riot.mount('#panel', 'add_fiz', {app: opts.app});
+                    console.log('mount fiz');
+                    tags['panel'] = riot.mount('#panel', 'add_fiz', {app: opts.app})[0];
                     break;
                 case 1:
-                    tags['panel'] = riot.mount('#panel', 'add_fiz', {app: opts.app});
+                    console.log('mount ur');
+                    tags['panel'] = riot.mount('#panel', 'add_ur', {app: opts.app})[0];
                     break;
             }
         }
@@ -78,6 +105,17 @@
 
             opts.tab = 1;
             this.mountPanel();
+            self.update();
+        }
+
+        this.btn_select_city = function(e) {
+            e.preventDefault();
+            if(opts.selected_city == e.item.city_id) {
+                opts.selected_city = 0;
+            } else {
+                opts.selected_city = e.item.city_id;
+            }
+
             self.update();
         }
     </script>
