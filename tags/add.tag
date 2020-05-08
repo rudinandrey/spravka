@@ -23,7 +23,7 @@
                     </div>
                 </nav>
 
-                <div class="tab-content" id="panel">
+                <div class="tab-content form-group" id="panel">
 
                 </div>
             </div>
@@ -67,10 +67,7 @@
         opts.tab = 0;
 
         this.on("mount", function() {
-            $('#nav-tab a').on('click', function (e) {
-                e.preventDefault()
-                $(this).tab('show')
-            });
+            this.mountPanel();
 
             opts.app.post("/api/cities", {}, function(data) {
                 opts.cities = data.result.cities;
