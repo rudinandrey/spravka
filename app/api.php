@@ -8,6 +8,8 @@ class api extends SecureApiController {
     }
 
     public function add($f3) {
-        $this->getResult(["abonent"=>$f3->get("POST")]);
+        $abonent = new \Spravka\Models\Abonent($f3, $f3->get("POST"));
+        $result = $abonent->save();
+        $this->getResult(["status"=>$result]);
     }
 }
