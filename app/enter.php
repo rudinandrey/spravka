@@ -13,7 +13,7 @@ class enter {
         $email = $f3->get("POST.email");
         $password = $f3->get("POST.password");
 
-        $user = new User(new UserMapper($f3->get("DB")));
+        $user = new User($f3);
         if($user->auth($email, $password)) {
             // авторизация успешна
             if($user->generateToken()) {
