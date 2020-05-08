@@ -88,7 +88,7 @@
                     console.log(data);
                     if(data.error == 0) {
                         alertify.success("Абонент успешно добавлен");
-
+                        self.clearForm();
                     } else {
                         alertify.error(data.result.message);
                     }
