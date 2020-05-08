@@ -22,8 +22,8 @@
 			<div class="col-9">
 				<div class="row form-group">
 					<div class="col"><input type="text" class="form-control"></div>
-					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг. F11</a></div>
-					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ. F12</a></div>
+					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг.</a></div>
+					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ.</a></div>
 				</div>
 				<div class="row form-group">
 					<div class="col">
@@ -35,6 +35,13 @@
 								<th>Телефон</th>
 							</tr>
 							</thead>
+							<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							</tbody>
 						</table>
 					</div>
 				</div>
