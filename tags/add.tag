@@ -23,7 +23,7 @@
                     </div>
                 </nav>
 
-                <div class="tab-content" id="nav-tabContent" id="panel">
+                <div class="tab-content" id="panel">
 
                 </div>
             </div>
