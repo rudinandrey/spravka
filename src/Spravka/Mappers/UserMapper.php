@@ -30,7 +30,7 @@ class UserMapper implements UserMapperInterface {
         $sql = "SELECT * FROM user WHERE email = :email";
         $data = $this->db->exec($sql, ["email"=>$email]);
         if(isset($data) && count($data) == 1) {
-            if(password_verify($password, $data[0]["password"])) {
+            if(password_verify($password, $data[0]["password"]) && $this->checkLastAuth($data[0]["last_auth"], 86400)) {
                 return $data[0];
             }
         }
@@ -51,9 +51,19 @@ class UserMapper implements UserMapperInterface {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
+    private function checkLastAuth($lastAuth, $period) {
+        $now = time();
+        $last = strtotime($lastAuth);
+        if($last + $period - $now  > 0) {
+            return true;
+        }
+        return false;
+    }
+
     public function saveToken($id, $token) {
-        $sql = "UPDATE user SET token = :token WHERE user_id = :id";
-        $c = $this->db->exec($sql, ["token"=>$token, "id"=>$id]);
+        $sql = "UPDATE user SET token = :token, last_auth=:last WHERE user_id = :id";
+        $last = date("Y-m-d H:i:s", time());
+        $c = $this->db->exec($sql, ["token"=>$token, "last"=>$last, "id"=>$id]);
         return $c == 1;
     }
 
