@@ -13,9 +13,6 @@ class Abonent {
     }
 
     public function save() {
-        return $this->abonent;
-
-
         return $this->mapper->add($this->abonent);
     }
 
@@ -27,6 +24,6 @@ class Abonent {
         if(!isset($abonent["owner"])) $abonent["owner"] = "";
         $abonent["is_visible"] = 1;
         $abonent["is_company"] = $abonent["type"];
-        $this->abonent = $abonent;
+        return $abonent;
     }
 }
