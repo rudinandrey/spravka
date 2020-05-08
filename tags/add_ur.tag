@@ -1,4 +1,4 @@
-<add_fiz>
+<add_ur>
     <div class="row form-group">
         <div class="col-sm-5">
             Организация
@@ -51,4 +51,4 @@
 
         });
     </script>
-</add_fiz>
+</add_ur>
