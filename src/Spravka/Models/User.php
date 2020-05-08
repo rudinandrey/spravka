@@ -34,6 +34,7 @@ class User implements UserInterface {
     }
 
     private function validate($user) {
+        if($user == false) return false;
         $this->user = $user;
         return true;
     }
