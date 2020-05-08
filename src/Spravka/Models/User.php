@@ -17,11 +17,7 @@ class User implements UserInterface {
 
     public function auth( $email, $password) {
         $user = $this->mapper->findByEmailPassword($email, $password);
-        if($this->validate($user)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->validate($user);
     }
 
     public function create($email, $password, $username) {
@@ -30,11 +26,7 @@ class User implements UserInterface {
 
     public function authByToken($token) {
         $user = $this->mapper->findByToken($token);
-        if($this->validate($user)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->validate($user);
     }
 
     private function getFields() {

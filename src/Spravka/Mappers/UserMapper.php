@@ -28,7 +28,7 @@ class UserMapper implements UserMapperInterface {
 
     public function findByEmailPassword($email, $password) {
         $sql = "SELECT * FROM user WHERE email = :email AND password = :password";
-        $data = $this->db->exec($sql, ["email"=>$email, $this->hashedPassword($password)]);
+        $data = $this->db->exec($sql, ["email"=>$email, "password"=>$this->hashedPassword($password)]);
         if(isset($data) && count($data) == 1) {
             return $data[0];
         } else {
