@@ -13,15 +13,6 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <a class="navbar-brand" href="#/">Справка</a>
           <a class="navbar-brand" href="#/add">Добавить</a>
-
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav mr-auto">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Главная <span class="sr-only"></span></a>
-		      </li>
-		    </ul>
-		    
-		  </div>
 		</nav>
 	</div>
 	<div id="main"></div>
