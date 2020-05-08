@@ -9,14 +9,6 @@
     </div>
     <div class="row form-group">
         <div class="col-sm-5">
-            Информация
-        </div>
-        <div class="col-sm-7">
-            <input type="text" class="form-control" name="info" ref="info">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-sm-5">
             Адрес
         </div>
         <div class="col-sm-7">
@@ -29,6 +21,14 @@
         </div>
         <div class="col-sm-7">
             <input type="text" class="form-control" name="phone" ref="phone">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-5">
+            Информация
+        </div>
+        <div class="col-sm-7">
+            <input type="text" class="form-control" name="info" ref="info">
         </div>
     </div>
     <div class="row form-group">
