@@ -19,6 +19,7 @@ class enter {
             if($user->generateToken()) {
                 $token = $user->getAsArray()["token"];
                 setcookie("spravka_token", $token, time() + 86400);
+                $f3->reroute("/");
             }
         } else {
             $view = new view();
