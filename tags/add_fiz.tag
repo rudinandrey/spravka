@@ -69,16 +69,12 @@
                 if(abonent.city == 0) throw new Error("Вы не выбрали город");
                 if(abonent.abonent.trim() == '') throw new Error("Введите ФИО пользователя");
                 if(abonent.address.trim() == '') throw new Error("Введите адрес абонента");
-            } catch (e) {
-                alertify.error(e.message);
-            }
 
-            if(abonent.city == 0) {
-                alertify.error("Вы не выбрали город для абонента");
-            } else {
                 opts.app.post("/api/add", abonent, function(data) {
                     console.log(data);
                 });
+            } catch (e) {
+                alertify.error(e.message);
             }
         }
     </script>
