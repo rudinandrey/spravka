@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Справочая служба 09</title>
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/alertify.min.css">
 	<link rel="stylesheet" href="/fonts/Blushes/stylesheet.css">
 	<link rel="stylesheet" href="/css/style.css">
 </head>
@@ -29,6 +30,7 @@
 
 	<script src="/js/jquery-3.5.0.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/alertify.min.js"></script>
 	<script src="/js/riot.js"></script>
 	<script src="/js/route.min.js"></script>
 	<script src="/js/tags.js?seq=1"></script>
