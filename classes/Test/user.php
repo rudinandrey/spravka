@@ -2,7 +2,7 @@
 
 namespace Test;
 
-class user extends Controller {
+class user extends \Controller {
     public function __construct() {
     
     }
