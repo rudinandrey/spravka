@@ -62,20 +62,37 @@
                 'info' : r.info.value,
                 'address' : r.address.value,
                 'phone' : r.phone.value,
-                'city': tags.main.opts.selected_city
+                'city': tags.main.opts.selected_city,
+                'type' : 0
             };
 
             try {
                 if(abonent.city == 0) throw new Error("Вы не выбрали город");
                 if(abonent.abonent.trim() == '') throw new Error("Введите ФИО пользователя");
                 if(abonent.address.trim() == '') throw new Error("Введите адрес абонента");
+                if(abonent.phone.trim() == "") throw new Error("Введите номер телефона");
 
                 opts.app.post("/api/add", abonent, function(data) {
                     console.log(data);
+                    if(data.error == 0) {
+                        alertify.success("Абонент успешно добавлен");
+
+                    } else {
+                        alertify.error(data.result.message);
+                    }
                 });
             } catch (e) {
                 alertify.error(e.message);
             }
+        }
+
+        this.clearForm = function() {
+            var r = this.refs;
+            r.abonent.value = '';
+            r.info.value = '';
+            r.address.value = '';
+            r.phone.value = '';
+            self.update();
         }
     </script>
 </add_fiz>

@@ -72,12 +72,42 @@
                 'owner' : r.owner.value,
                 'info' : r.info.value,
                 'address' : r.address.value,
-                'phone' : r.phone.value
+                'phone' : r.phone.value,
+                'city' : tags.main.selected_city,
+                'type' : 1
             };
 
-            opts.app.post("/api/add", abonent, function(data) {
-                console.log(data);
-            });
+            try {
+                if(abonent.city == 0) throw new Error("Вы не выбрали город");
+                if(abonent.abonent.trim() == '') throw new Error("Введите название организации");
+                if(abonent.address.trim() == '') throw new Error("Введите адрес организации");
+                if(abonent.phone.trim() == "") throw new Error("Введите номер телефона");
+
+
+                opts.app.post("/api/add", abonent, function(data) {
+                    console.log(data);
+                    if(data.error == 0) {
+                        alertify.success("Абонент успешно добавлен");
+
+                    } else {
+                        alertify.error(data.result.message);
+                    }
+                });
+            } catch (e) {
+                alertify.error(e.message);
+            }
+
+
+        }
+
+        this.clearForm = function() {
+            var r = this.refs;
+            r.abonent.value = '';
+            r.owner.value = '';
+            r.info.value = '';
+            r.address.value = '';
+            r.phone.value = '';
+            self.update();
         }
     </script>
 </add_ur>
