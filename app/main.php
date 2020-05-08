@@ -1,13 +1,13 @@
 <?php
 
-class main {
-	public function index() {
+class main extends SecureController {
+	public function index($f3) {
+
 		$view = new view();
 		echo $view->render("_layout.php");
 	}
 
-	public function login() {
-		$view = new view();
-		echo $view->render("login.php");
-	}
+    public function test() {
+        echo "test";
+    }
 }
