@@ -11,7 +11,7 @@ class CitiesMapper implements CitiesMapperInterface {
     }
 
     public function getAllCities() {
-        $sql = "SELECT * FROM cities;";
+        $sql = "SELECT * FROM city;";
         return $this->db->exec($sql);
     }
 }
