@@ -15,7 +15,7 @@ class AbonentMapper {
         $this->db = $db;
     }
 
-    public function add(Abonent $abonent) {
+    public function add($abonent) {
         $sql = "INSERT INTO phonebook (city, phone, name, owner, address, info, is_visible, is_company) 
                 VALUES (:city, :phone, :name, :owner, :address, :info, :is_visible, :is_company);";
         $ab = $this->getRightAbonent($abonent);
@@ -26,6 +26,7 @@ class AbonentMapper {
     public function getRightAbonent($abonent) {
         $fields = ["city", "phone", "name", "owner", "address", "info", "is_visible", "is_company"];
         $ab = [];
+
         foreach ($fields as $field) {
             $ab[$field] = $abonent[$field];
         }

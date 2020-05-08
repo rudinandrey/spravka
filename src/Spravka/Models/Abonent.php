@@ -15,4 +15,8 @@ class Abonent {
     public function save() {
         return $this->mapper->add($this->abonent) == 1;
     }
+
+    public function get() {
+        return $this->abonent;
+    }
 }
