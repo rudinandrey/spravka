@@ -55,4 +55,9 @@ class UserMapper implements UserMapperInterface {
         $c = $this->db->exec($sql, ["token"=>$token, "id"=>$id]);
         return $c == 1;
     }
+
+    public function createUser($email, $password, $username) {
+        $sql = "INSERT INTO user (email, password, username) VALUES (:email, :password, :username);";
+        return $this->db->exec($sql, ["email"=>$email, "password"=>$password, "username"=>$this->hashedPassword($username)]) == 1;
+    }
 }

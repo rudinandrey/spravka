@@ -24,6 +24,10 @@ class User implements UserInterface {
         }
     }
 
+    public function create(string $email, string $password, string $username) {
+        return $this->mapper->createUser($email, $password, $username);
+    }
+
     public function authByToken($token) {
         $user = $this->mapper->findByToken($token);
         if($this->validate($user)) {
