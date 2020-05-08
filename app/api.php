@@ -6,8 +6,7 @@ class api extends SecureApiController {
 	}
 
 	public function cities($f3) {
-        $cityAdapter = new \Tataisneft\Adapter\CityAdapter($f3->get("DB"));
-        $cities = $cityAdapter->getAll();
-        $this->getResult(["cities"=>$cities]);
+        $cities = new \Spravka\Models\Cities($f3);
+        $this->getResult(["cities"=>$cities->getAllCities()]);
     }
 }
