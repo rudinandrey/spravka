@@ -21,7 +21,8 @@ class enter {
                 setcookie("spravka_token", $token, time() + 86400);
             }
         } else {
-
+            $view = new view();
+            echo $view->render("login.php");
         }
     }
 }
