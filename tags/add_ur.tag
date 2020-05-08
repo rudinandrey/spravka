@@ -1,5 +1,5 @@
 <add_ur>
-    <div class="row form-group">
+    <div class="row form-group form-top">
         <div class="col-sm-5">
             Организация
         </div>
@@ -39,9 +39,20 @@
             <input type="text" class="form-control" name="info" ref="info">
         </div>
     </div>
+    <div class="row form-group">
+        <div class="col-sm-5">
+            &nbsp;
+        </div>
+        <div class="col-sm-7">
+            <a href="#" class="btn btn-success" onclick={btn_add_abonent}>Добавить</a>
+        </div>
+    </div>
+
 
     <style>
-
+        .form-top {
+            margin-top: 20px;
+        }
     </style>
 
     <script>
@@ -50,5 +61,9 @@
         this.on("mount", function () {
 
         });
+
+        this.btn_add_abonent = function(e) {
+            console.log('Добавляем абонента');
+        }
     </script>
 </add_ur>
