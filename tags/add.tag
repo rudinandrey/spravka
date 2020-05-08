@@ -22,14 +22,13 @@
             <div class="col-9">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-fiz-tab" data-toggle="tab" href="#nav-fiz" role="tab" aria-controls="nav-fiz" aria-selected="true">Физ.лица</a>
-                        <a class="nav-item nav-link active" id="nav-ur-tab" data-toggle="tab" href="#nav-ur" role="tab" aria-controls="nav-ur" aria-selected="false">Юр.лица</a>
+                        <a class="nav-item nav-link {opts.tab == 0 ? 'active' : ''}" onclick={btn_select_fiz}>Физ.лица</a>
+                        <a class="nav-item nav-link {opts.tab == 1 ? 'active' : ''}" onclick={btn_select_ur}>Юр.лица</a>
                     </div>
                 </nav>
 
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-fiz" role="tabpanel" aria-labelledby="nav-fiz-tab">Page 1</div>
-                    <div class="tab-pane fade" id="nav-ur" role="tabpanel" aria-labelledby="nav-ur-tab">Page 2</div>
+                <div class="tab-content" id="nav-tabContent" id="panel">
+
                 </div>
             </div>
 
@@ -43,11 +42,43 @@
     <script>
         var self = this;
 
+        opts.tab = 0;
+
         this.on("mount", function() {
             $('#nav-tab a').on('click', function (e) {
                 e.preventDefault()
                 $(this).tab('show')
-            })
+            });
+
+
         });
+
+
+        this.mountPanel = function () {
+            switch (opts.tab) {
+                case 0:
+                    tags['panel'] = riot.mount('#panel', 'add_fiz', {app: opts.app});
+                    break;
+                case 1:
+                    tags['panel'] = riot.mount('#panel', 'add_fiz', {app: opts.app});
+                    break;
+            }
+        }
+
+        this.btn_select_fiz = function (e) {
+            e.preventDefault();
+
+            opts.tab = 0;
+            this.mountPanel();
+            self.update();
+        }
+
+        this.btn_select_ur = function (e) {
+            e.preventDefault();
+
+            opts.tab = 1;
+            this.mountPanel();
+            self.update();
+        }
     </script>
 </add>
