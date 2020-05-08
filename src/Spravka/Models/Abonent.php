@@ -13,7 +13,7 @@ class Abonent {
     }
 
     public function save() {
-        return $this->mapper->add($this->abonent) == 1;
+        return $this->mapper->add($this->abonent);
     }
 
     public function get() {
