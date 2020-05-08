@@ -27,13 +27,14 @@ class UserMapper implements UserMapperInterface {
     }
 
     public function findByEmailPassword($email, $password) {
-        $sql = "SELECT * FROM user WHERE email = :email AND password = :password";
-        $data = $this->db->exec($sql, ["email"=>$email, "password"=>$this->hashedPassword($password)]);
+        $sql = "SELECT * FROM user WHERE email = :email";
+        $data = $this->db->exec($sql, ["email"=>$email]);
         if(isset($data) && count($data) == 1) {
-            return $data[0];
-        } else {
-            return false;
+            if(password_verify($password, $data[0]["password"])) {
+                return $data[0];
+            }
         }
+        return false;
     }
 
     public function findByToken($token) {
