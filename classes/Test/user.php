@@ -8,6 +8,9 @@ class user extends \Controller {
     }
     
     public function ping($f3) {
-        $this->getResult(["request"=>"pong"]);
+        $user = new \Spravka\Models\User($f3);
+        $status = $user->auth("rudinandrey@yandex.ru", "123");
+
+        $this->getResult(["status"=>$status]);
     }
 }
