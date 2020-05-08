@@ -52,7 +52,7 @@ class UserMapper implements UserMapperInterface {
     }
 
     public function saveToken($id, $token) {
-        $sql = "UPDATE user SET token = :token WHERE id = :id";
+        $sql = "UPDATE user SET token = :token WHERE user_id = :id";
         $c = $this->db->exec($sql, ["token"=>$token, "id"=>$id]);
         return $c == 1;
     }
