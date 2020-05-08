@@ -19,8 +19,6 @@ class AbonentMapper {
         $sql = "INSERT INTO phonebook (city, phone, name, owner, address, info, is_visible, is_company) 
                 VALUES (:city, :phone, :name, :owner, :address, :info, :is_visible, :is_company);";
         $ab = $this->getRightAbonent($abonent);
-        return $ab;
-
         $c = $this->db->exec($sql, $ab) == 1;
         return $c;
     }
