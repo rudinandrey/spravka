@@ -2,6 +2,7 @@
 
 namespace Spravka\Mappers;
 
+use DB\SQL;
 use Spravka\Interfaces\CitiesMapperInterface;
 
 class CitiesMapper implements CitiesMapperInterface {
