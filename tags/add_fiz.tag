@@ -61,12 +61,25 @@
                 'abonent' : r.abonent.value,
                 'info' : r.info.value,
                 'address' : r.address.value,
-                'phone' : r.phone.value
+                'phone' : r.phone.value,
+                'city': tags.main.opts.selected_city
             };
 
-            opts.app.post("/api/add", abonent, function(data) {
-                console.log(data);
-            });
+            try {
+                if(abonent.city == 0) throw new Error("Вы не выбрали пользователя");
+                if(abonent.abonent.trim() == '') throw new Error("Введите ФИО пользователя");
+                if(abonent.address.trim() == '') throw new Error("Введите адрес абонента");
+            } catch (e) {
+                alertify.error(e.message);
+            }
+
+            if(abonent.city == 0) {
+                alertify.error("Вы не выбрали город для абонента");
+            } else {
+                opts.app.post("/api/add", abonent, function(data) {
+                    console.log(data);
+                });
+            }
         }
     </script>
 </add_fiz>
