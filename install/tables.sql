@@ -46,7 +46,8 @@ CREATE TABLE `user` (
                         `password` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
                         `username` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
                         `token` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-                        PRIMARY KEY (`user_id`)
+                        PRIMARY KEY (`user_id`),
+                        UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -57,4 +58,4 @@ CREATE TABLE `user_in_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2020-05-06 00:02:44
+-- 2020-05-08 13:22:49
