@@ -12,7 +12,7 @@
             Информация
         </div>
         <div class="col-sm-7">
-            <input type="text" class="form-control" name="owner" ref="owner">
+            <input type="text" class="form-control" name="info" ref="info">
         </div>
     </div>
     <div class="row form-group">
@@ -54,7 +54,19 @@
         });
 
         this.btn_add_abonent = function(e) {
+            e.preventDefault();
             console.log('Добавляем абонента');
+            var r = this.refs;
+            var abonent = {
+                'abonent' : r.abonent.value,
+                'info' : r.info.value,
+                'address' : r.address.value,
+                'phone' : r.phone.value
+            };
+
+            opts.post("/api/add", abonent, function(data) {
+                console.log(data);
+            });
         }
     </script>
 </add_fiz>
