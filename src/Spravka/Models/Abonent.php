@@ -8,7 +8,7 @@ class Abonent {
     private $abonent;
 
     public function __construct($f3, $abonent) {
-        $this->abonent = $abonent;
+        $this->abonent = $this->prepare($abonent);
         $this->mapper = new AbonentMapper($f3->get("DB"));
     }
 
@@ -18,5 +18,12 @@ class Abonent {
 
     public function get() {
         return $this->abonent;
+    }
+
+    private function prepare($abonent) {
+        if(!isset($abonent["owner"])) $abonent["owner"] = "";
+        $abonent["is_visible"] = 1;
+        $abonent["is_company"] = $abonent["type"];
+        $this->abonent = $abonent;
     }
 }
