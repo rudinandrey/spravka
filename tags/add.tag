@@ -22,10 +22,15 @@
             <div class="col-9">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-fiz" data-toggle="tab" href="#nav-fiz" role="tab" aria-controls="nav-fiz" aria-selected="true">Физ.лица</a>
-                        <a class="nav-item nav-link active" id="nav-ur" data-toggle="tab" href="#nav-ur" role="tab" aria-controls="nav-ur" aria-selected="false">Юр.лица</a>
+                        <a class="nav-item nav-link active" id="nav-fiz-tab" data-toggle="tab" href="#nav-fiz" role="tab" aria-controls="nav-fiz" aria-selected="true">Физ.лица</a>
+                        <a class="nav-item nav-link active" id="nav-ur-tab" data-toggle="tab" href="#nav-ur" role="tab" aria-controls="nav-ur" aria-selected="false">Юр.лица</a>
                     </div>
                 </nav>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-fiz" role="tabpanel" aria-labelledby="nav-fiz-tab">Page 1</div>
+                    <div class="tab-pane fade" id="nav-ur" role="tabpanel" aria-labelledby="nav-ur-tab">Page 2</div>
+                </div>
             </div>
 
         </div>
