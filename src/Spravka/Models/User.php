@@ -15,7 +15,7 @@ class User implements UserInterface {
         $this->mapper = new UserMapper($f3->get("DB"));
     }
 
-    public function auth(\string $email, \string $password) {
+    public function auth( $email, $password) {
         $user = $this->mapper->findByEmailPassword($email, $password);
         if($this->validate($user)) {
             return true;
@@ -24,7 +24,7 @@ class User implements UserInterface {
         }
     }
 
-    public function create(string $email, string $password, string $username) {
+    public function create($email, $password, $username) {
         return $this->mapper->createUser($email, $password, $username);
     }
 

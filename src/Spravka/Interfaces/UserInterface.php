@@ -4,8 +4,8 @@ namespace Spravka\Interfaces;
 
 
 interface UserInterface {
-    public function auth(\string $email, \string $password);
+    public function auth($email, $password);
     public function generateToken();
     public function getAsArray();
-    public function create(\string $email, \string $password, \string $username);
+    public function create($email, $password, $username);
 }
