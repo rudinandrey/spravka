@@ -24,5 +24,12 @@ function App() {
 var app = new App();
 
 var tags = {};
-tags['main'] = riot.mount("#main", "main", {app: app})[0];
 
+
+route("/", function() {
+    tags['main'] = riot.mount("#main", "main", {app: app})[0];
+});
+
+route("/add", function() {
+    tags['main'] = riot.mount("#main", "add", {app: app})[0];
+});
