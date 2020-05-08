@@ -17,7 +17,7 @@ class UserMapper implements UserMapperInterface {
     }
 
     public function findById($id) {
-        $sql = "SELECT * FROM user WHERE id = :id;";
+        $sql = "SELECT * FROM user WHERE user_id = :id;";
         $data = $this->db->exec($sql, ["id"=>$id]);
         if(isset($data) && count($data) == 1){
             return $data[0];

@@ -30,7 +30,7 @@ class User implements UserInterface {
     }
 
     private function getFields() {
-        return ["id", "email", "password", "username", "token"];
+        return ["user_id", "email", "password", "username", "token"];
     }
 
     private function validate($user) {
@@ -43,7 +43,7 @@ class User implements UserInterface {
         $tokenGenerator = new TokenGenerator();
         $token = $tokenGenerator->generate();
         if($this->validate($this->user)) {
-            $status = $this->mapper->saveToken($this->user["id"], $token);
+            $status = $this->mapper->saveToken($this->user["user_id"], $token);
             if($status == true) {
                 $this->user["token"] = $token;
                 return true;
