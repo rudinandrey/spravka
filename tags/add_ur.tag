@@ -75,7 +75,7 @@
                 'phone' : r.phone.value
             };
 
-            opts.post("/api/add", abonent, function(data) {
+            opts.app.post("/api/add", abonent, function(data) {
                 console.log(data);
             });
         }
