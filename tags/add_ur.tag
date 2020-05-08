@@ -68,7 +68,7 @@
             console.log('Добавляем абонента');
             var r = this.refs;
             var abonent = {
-                'abonent' : r.abonent.value,
+                'name' : r.abonent.value,
                 'owner' : r.owner.value,
                 'info' : r.info.value,
                 'address' : r.address.value,
