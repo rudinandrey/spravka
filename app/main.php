@@ -1,7 +1,8 @@
 <?php
 
 class main extends SecureController {
-	public function index() {
+	public function index($f3) {
+
 		$view = new view();
 		echo $view->render("_layout.php");
 	}

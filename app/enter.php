@@ -1,5 +1,8 @@
 <?php
 
+use Spravka\Mappers\UserMapper;
+use Spravka\Models\User;
+
 class enter {
     public function login() {
         $view = new view();
@@ -10,5 +13,15 @@ class enter {
         $email = $f3->get("POST.email");
         $password = $f3->get("POST.password");
 
+        $user = new User(new UserMapper($f3->get("DB")));
+        if($user->auth($email, $password)) {
+            // авторизация успешна
+            if($user->generateToken()) {
+                $token = $user->getAsArray()["token"];
+                setcookie("spravka_token", $token, time() + 86400);
+            }
+        } else {
+
+        }
     }
 }
