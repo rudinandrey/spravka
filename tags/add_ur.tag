@@ -80,7 +80,7 @@
             try {
                 if(abonent.city == 0) throw new Error("Вы не выбрали город");
                 if(abonent.abonent.trim() == '') throw new Error("Введите название организации");
-                if(abonent.address.trim() == '') throw new Error("Введите адрес организации");
+                if(abonent.name.trim() == '') throw new Error("Введите адрес организации");
                 if(abonent.phone.trim() == "") throw new Error("Введите номер телефона");
 
 
