@@ -1,6 +1,6 @@
 <?php
 
-class SecureController {
+class SecureApiController {
 
     public function __construct($f3) {
         $this->f3 = $f3;
