@@ -28,7 +28,7 @@ class AbonentMapper {
         $ab = [];
 
         foreach ($fields as $field) {
-            $ab[$field] = $abonent[$field];
+            $ab[$field] = $abonent[$field] == null ? "" : $abonent[$field];
         }
         return $ab;
     }
