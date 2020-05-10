@@ -1,6 +1,6 @@
 <?php
 
-namespace Spravka\Mappers;
+namespace Spravka\SqlMapper;
 
 use DB\SQL;
 use Spravka\Interfaces\UserMapperInterface;

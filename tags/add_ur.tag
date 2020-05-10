@@ -73,7 +73,7 @@
                 'info' : r.info.value,
                 'address' : r.address.value,
                 'phone' : r.phone.value,
-                'city' : tags.main.selected_city,
+                'city' : tags.main.opts.selected_city,
                 'type' : 1
             };
 

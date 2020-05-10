@@ -1,11 +1,16 @@
 <?php
 
-namespace Spravka\Mappers;
+namespace Spravka\SqlMapper;
 
 use DB\SQL;
 use Spravka\Interfaces\CitiesMapperInterface;
 
 class CitiesMapper implements CitiesMapperInterface {
+    /**
+     * @var SQL
+     */
+    private SQL $db;
+
     public function __construct(SQL $db) {
         $this->db = $db;
     }

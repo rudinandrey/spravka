@@ -1,6 +1,6 @@
 <?php
 
-use Spravka\Mappers\UserMapper;
+use Spravka\SqlMapper\UserMapper;
 use Spravka\Models\User;
 
 class Enter {

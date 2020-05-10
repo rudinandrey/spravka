@@ -10,7 +10,10 @@ class TokenGenerator implements TokenInterface {
     }
 
     private function randomString(int $length) {
-        return bin2hex(random_bytes($length));
+        try {
+            return bin2hex(random_bytes($length));
+        } catch (\Exception $e) {
+        }
     }
 
 }
