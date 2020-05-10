@@ -83,6 +83,12 @@
 		opts.edit_mode = false;
 		opts.remove_mode = false;
 
+		opts.types = {
+			fiz: 0,
+			org: 1,
+			unknown: -1
+		};
+
 		this.on("mount", function() {
 			opts.app.post("/api/cities", {}, function(data) {
 				opts.cities = data.result.cities;
@@ -118,7 +124,40 @@
 		}
 
 		this.event_onkeyup = function(e) {
-			console.log(e);
+			if(e.keyCode == 13) {
+				var params = {
+					city: tags.main.opts.selected_city,
+					type: opts.types.unknown,
+					search: refs.search.value
+				};
+				self.search(params);
+			}
+		}
+
+		this.btn_search_org = function(e) {
+			e.preventDefault();
+			var params = {
+				city: tags.main.opts.selected_city,
+				type: opts.types.org,
+				search: refs.search.value
+			};
+			self.search(params);
+		}
+
+		this.btn_search_fiz = function(e) {
+			e.preventDefault();
+			var params = {
+				city: tags.main.opts.selected_city,
+				type: opts.types.fiz,
+				search: refs.search.value
+			};
+			self.search(params);
+		}
+
+		this.search = function(params) {
+			opts.app.post("/api/search", params, function(data) {
+				console.log(data);
+			});
 		}
 	</script>
 </main>
