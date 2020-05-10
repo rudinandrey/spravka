@@ -12,4 +12,14 @@ class Api extends \TypeController\SecureApiController {
         $result = $abonent->save();
         $this->getResult(["status"=>$result]);
     }
+
+    public function search($f3) {
+        $city = $f3->get("POST.city");
+        $type = $f3->get("POST.type");
+        $search = $f3->get("POST.search");
+        $provider = $f3->get("POST.provider");
+
+
+
+    }
 }
