@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-9">
 				<div class="row form-group">
-					<div class="col"><input type="text" ref="search" class="form-control" onkeyup={event_onkeyup}></div>
+					<div class="col"><input type="text" id="search_element" ref="search" class="form-control" onkeyup={event_onkeyup}></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг.</a></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ.</a></div>
 				</div>
@@ -103,8 +103,8 @@
 			} else {
 				opts.selected_city = e.item.city_id;
 			}
-			
 			self.update();
+			$('#search_element').focus();
 		}
 
 		this.btn_edit_mode = function(e) {
