@@ -19,11 +19,11 @@ class SecureController implements IController {
 
         if($token != null) {
             if(!$user->authByToken($token)) {
-                header("Location: /");
+                header("Location: /login");
                 return;
             }
         } else {
-            header("Location: /");
+            header("Location: /login");
             return;
         }
     }
