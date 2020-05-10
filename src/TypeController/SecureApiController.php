@@ -1,10 +1,12 @@
 <?php
 
-class SecureApiController {
 
-    public function __construct($f3) {
-        $this->f3 = $f3;
-    }
+namespace TypeController;
+
+
+use Interfaces\IController;
+
+class SecureApiController implements IController {
 
     public function beforeRoute() {
         $token = $this->f3->get("COOKIE.spravka_token");
@@ -21,7 +23,7 @@ class SecureApiController {
         }
     }
 
-    public function getResult($result, $error = 0) {
-        echo json_encode(["result"=>$result, "error"=>$error]);
+    public function getResult(array $result, int $error = 0) {
+        echo json_encode(["result"=>$result, "error"=>$error], JSON_UNESCAPED_UNICODE);
     }
 }
