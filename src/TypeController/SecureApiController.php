@@ -1,9 +1,16 @@
 <?php
 
-class SecureController {
 
-    public function __construct($f3) {
-        $this->f3 = $f3;
+namespace TypeController;
+
+
+use Interfaces\IController;
+
+class SecureApiController implements IController {
+    private \Base $f3;
+
+    public function __construct() {
+        $this->f3 = \Base::instance();
     }
 
     public function beforeRoute() {
@@ -21,7 +28,7 @@ class SecureController {
         }
     }
 
-    public function getResult($result, $error = 0) {
-        echo json_encode(["result"=>$result, "error"=>$error]);
+    public function getResult(array $result, int $error = 0) {
+        echo json_encode(["result"=>$result, "error"=>$error], JSON_UNESCAPED_UNICODE);
     }
 }

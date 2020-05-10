@@ -1,6 +1,6 @@
 <?php
 
-namespace Spravka\Mappers;
+namespace Spravka\SqlMapper;
 
 use DB\SQL;
 use Spravka\Interfaces\UserMapperInterface;
@@ -30,7 +30,7 @@ class UserMapper implements UserMapperInterface {
         $sql = "SELECT * FROM user WHERE email = :email";
         $data = $this->db->exec($sql, ["email"=>$email]);
         if(isset($data) && count($data) == 1) {
-            if(password_verify($password, $data[0]["password"]) && $this->checkLastAuth($data[0]["last_auth"], 86400)) {
+            if(password_verify($password, $data[0]["password"])) {
                 return $data[0];
             }
         }
@@ -41,7 +41,9 @@ class UserMapper implements UserMapperInterface {
         $sql = "SELECT * FROM user WHERE token = :token;";
         $data = $this->db->exec($sql, ["token"=>$token]);
         if(isset($data) && count($data) == 1){
-            return $data[0];
+            if($this->checkLastAuth($data[0]["last_auth"], 86400)) {
+                return $data[0];
+            }
         } else {
             return false;
         }

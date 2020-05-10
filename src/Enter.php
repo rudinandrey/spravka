@@ -1,9 +1,9 @@
 <?php
 
-use Spravka\Mappers\UserMapper;
+use Spravka\SqlMapper\UserMapper;
 use Spravka\Models\User;
 
-class enter {
+class Enter {
     public function login() {
         $view = new view();
         echo $view->render("login.php");

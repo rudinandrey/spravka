@@ -4,7 +4,7 @@ namespace Spravka\Models;
 
 use Spravka\Interfaces\UserInterface;
 use Spravka\Interfaces\UserMapperInterface;
-use Spravka\Mappers\UserMapper;
+use Spravka\SqlMapper\UserMapper;
 
 class User implements UserInterface {
     private array $user;
