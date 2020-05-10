@@ -20,7 +20,7 @@ class App {
         $this->f3->route("POST /auth", "Enter->auth");
         $this->f3->route("GET|POST /api/@method", "Api->@method");
         $this->f3->route("GET /@method", "Main->@method");
-        $this->f3->route("GET /test/@area/@method", 'Test\@area->@method');
+        $this->f3->route("GET /test/@area/@method", 'Tests\@area->@method');
     }
 
     private function setup() {
