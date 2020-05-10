@@ -7,6 +7,11 @@ namespace TypeController;
 use Interfaces\IController;
 
 class SecureApiController implements IController {
+    private Base $f3;
+
+    public function __construct($f3) {
+        $this->f3 = $f3;
+    }
 
     public function beforeRoute() {
         $token = $this->f3->get("COOKIE.spravka_token");

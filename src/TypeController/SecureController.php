@@ -7,6 +7,11 @@ namespace TypeController;
 use Interfaces\IController;
 
 class SecureController implements IController {
+    private Base $f3;
+
+    public function __construct($f3) {
+        $this->f3 = $f3;
+    }
 
     public function beforeRoute() {
         $token = $this->f3->get("COOKIE.spravka_token");
@@ -14,11 +19,11 @@ class SecureController implements IController {
 
         if($token != null) {
             if(!$user->authByToken($token)) {
-                $this->getResult(["msg"=>"Вы не авторизованы"], 1);
+                header("Location: /");
                 return;
             }
         } else {
-            $this->getResult(["msg"=>"Вы не авторизованы"], 1);
+            header("Location: /");
             return;
         }
     }
