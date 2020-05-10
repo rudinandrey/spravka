@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-9">
 				<div class="row form-group">
-					<div class="col"><input type="text" class="form-control"></div>
+					<div class="col"><input type="text" ref="search" class="form-control" onkeyup={event_onkeyup}></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг.</a></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ.</a></div>
 				</div>
@@ -115,6 +115,10 @@
 			e.preventDefault();
 			opts.remove_mode == true ? false : true;
 			self.update();
+		}
+
+		this.event_onkeyup = function(e) {
+			console.log(e);
 		}
 	</script>
 </main>
