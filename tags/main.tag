@@ -128,7 +128,7 @@
 				var params = {
 					city: tags.main.opts.selected_city,
 					type: opts.types.unknown,
-					search: refs.search.value
+					search: self.refs.search.value
 				};
 				self.search(params);
 			}
@@ -139,7 +139,7 @@
 			var params = {
 				city: tags.main.opts.selected_city,
 				type: opts.types.org,
-				search: refs.search.value
+				search: self.refs.search.value
 			};
 			self.search(params);
 		}
@@ -149,7 +149,7 @@
 			var params = {
 				city: tags.main.opts.selected_city,
 				type: opts.types.fiz,
-				search: refs.search.value
+				search: self.refs.search.value
 			};
 			self.search(params);
 		}
