@@ -124,6 +124,7 @@
 		}
 
 		this.event_onkeyup = function(e) {
+			console.log(e.keyCode);
 			if(e.keyCode == 13) {
 				var params = {
 					city: tags.main.opts.selected_city,
