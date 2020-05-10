@@ -20,6 +20,6 @@ class Api extends \TypeController\SecureApiController {
         $provider = $f3->get("POST.provider");
 
 
-
+        $this->getResult(["params"=>$f3->get("POST")]);
     }
 }

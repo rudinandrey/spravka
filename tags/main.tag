@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-9">
 				<div class="row form-group">
-					<div class="col"><input type="text" class="form-control"></div>
+					<div class="col"><input type="text" ref="search" class="form-control" onkeyup={event_onkeyup}></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг.</a></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ.</a></div>
 				</div>
@@ -83,6 +83,12 @@
 		opts.edit_mode = false;
 		opts.remove_mode = false;
 
+		opts.types = {
+			fiz: 0,
+			org: 1,
+			unknown: -1
+		};
+
 		this.on("mount", function() {
 			opts.app.post("/api/cities", {}, function(data) {
 				opts.cities = data.result.cities;
@@ -115,6 +121,43 @@
 			e.preventDefault();
 			opts.remove_mode == true ? false : true;
 			self.update();
+		}
+
+		this.event_onkeyup = function(e) {
+			if(e.keyCode == 13) {
+				var params = {
+					city: tags.main.opts.selected_city,
+					type: opts.types.unknown,
+					search: self.refs.search.value
+				};
+				self.search(params);
+			}
+		}
+
+		this.btn_search_org = function(e) {
+			e.preventDefault();
+			var params = {
+				city: tags.main.opts.selected_city,
+				type: opts.types.org,
+				search: self.refs.search.value
+			};
+			self.search(params);
+		}
+
+		this.btn_search_fiz = function(e) {
+			e.preventDefault();
+			var params = {
+				city: tags.main.opts.selected_city,
+				type: opts.types.fiz,
+				search: self.refs.search.value
+			};
+			self.search(params);
+		}
+
+		this.search = function(params) {
+			opts.app.post("/api/search", params, function(data) {
+				console.log(data);
+			});
 		}
 	</script>
 </main>
