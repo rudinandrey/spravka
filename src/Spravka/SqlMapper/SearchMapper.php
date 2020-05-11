@@ -23,7 +23,7 @@ class SearchMapper implements SearchInterface {
 
     public function searchWithType(int $city, int $type, string $search) {
         $sql = "SELECT * FROM phonebook WHERE city = :city AND is_company = :type AND (name LIKE :search OR address LIKE :search) AND is_visible = 1;";
-        return $this->db->exec($sql, ["city"=>$city, "type"=>$type, "search"=>$search]);
+        return $this->db->exec($sql, ["city"=>$city, "type"=>$type, "search"=>$search."%"]);
     }
 
     public function search(int $city, int $type, string $searchName, string $searchAddress) {
