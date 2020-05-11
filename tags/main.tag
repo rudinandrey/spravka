@@ -144,18 +144,34 @@
 			}
 
 			if(e.keyCode == 38) {
-				if(opts.selected_city > 1) {
-					opts.selected_city -= 1;
+				var ind = self.selectIndexByCityId(opts.selected_city);
+				if(ind > 1) {
+					ind -= 1;
+					opts.selected_city = self.selectCityIdByIndex(ind);
 					self.update();
 				}
 			}
 
 			if(e.keyCode == 40) {
-				if(opts.selected_city < opts.cities.length) {
-					opts.selected_city += 1;
+				var ind = self.selectIndexByCityId(opts.selected_city);
+				if(ind < opts.cities.length) {
+					ind += 1;
+					opts.selected_city = self.selectCityIdByIndex(ind);
 					self.update();
 				}
 			}
+		}
+
+		this.selectIndexByCityId = function(cityId) {
+			opts.cities.forEach(function(el, index) {
+				if(el.city_id == cityId) return index;
+			});
+		}
+
+		this.selectCityIdByIndex = function(index) {
+			opts.cities.forEach(function(el, i) {
+				if(index == i) return el.city_id;
+			});
 		}
 
 		this.btn_search_org = function(e) {
