@@ -5,32 +5,44 @@ namespace Spravka\Es09Mapper;
 
 
 use Spravka\Interfaces\SearchInterface;
+use Spravka\Models\Cities;
 
 class SearchMapper implements SearchInterface {
 
+    /**
+     * @var Cities
+     */
+    private Cities $city;
+
+    public function __construct($f3) {
+        $this->city = new Cities($f3);
+    }
+
     public function search($city, $type, $search) {
         // TODO: Implement search() method.
+        $cityEs09 = $this->city->getEs09Code($city);
         $arr = [
-            "city"=>1604000014,
+            "city"=>$cityEs09,
             "limit"=>50,
             "offset"=>0,
             "q"=>$search
         ];
         $params = http_build_query($arr);
-        $url = "http://es09.ru:8080/api/company/search?city=1604000014&limit=40&offset=0&q=%D0%BA%D0%BE%D1%84%D0%B5";
+        $url = "http://es09.ru:8080/api/company/search?".$params;
         $data = file_get_contents($url);
         return $this->parse($data);
     }
 
     public function searchSimple(int $city, string $search) {
+        $cityEs09 = $this->city->getEs09Code($city);
         $arr = [
-            "city"=>1604000014,
+            "city"=>$cityEs09,
             "limit"=>50,
             "offset"=>0,
             "q"=>$search
         ];
         $params = http_build_query($arr);
-        $url = "http://es09.ru:8080/api/company/search?city=1604000014&limit=40&offset=0&q=%D0%BA%D0%BE%D1%84%D0%B5";
+        $url = "http://es09.ru:8080/api/company/search?".$params;
         $data = file_get_contents($url);
         return $this->parse($data);
     }
