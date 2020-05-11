@@ -4,6 +4,7 @@
 namespace Spravka\Models;
 
 
+use Spravka\Interfaces\SearchInterface;
 use Spravka\SqlMapper\SearchMapper;
 
 class Search {
@@ -11,7 +12,7 @@ class Search {
     /**
      * @var SearchMapper
      */
-    private SearchMapper $mapper;
+    private SearchInterface $mapper;
 
     public function __construct(\Base $f3, $provider) {
         $this->f3 = $f3;
