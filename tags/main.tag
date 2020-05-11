@@ -219,7 +219,7 @@
 						opts.abonents = data.result.abonents;
 						self.update();
 						$('#search_element').focus();
-						if(opts.abonents == []) {
+						if(opts.abonents.length == 0) {
 							alertify.message("Данных не найдено");
 						}
 					} else {
