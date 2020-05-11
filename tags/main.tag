@@ -142,6 +142,20 @@
 				// поиск по юрикам
 				self.btn_search_org(e);
 			}
+
+			if(e.keyCode == 38) {
+				if(opts.selected_city > 1) {
+					opts.selected_city -= 1;
+					self.update();
+				}
+			}
+
+			if(e.keyCode == 40) {
+				if(opts.selected_city < opts.cities.length) {
+					opts.selected_city += 1;
+					self.update();
+				}
+			}
 		}
 
 		this.btn_search_org = function(e) {
@@ -170,6 +184,7 @@
 					console.log(data.result);
 					opts.abonents = data.result.abonents;
 					self.update();
+					$('#search_element').focus();
 				} else {
 					alertify.error(data.result.message);
 				}
