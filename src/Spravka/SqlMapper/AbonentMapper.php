@@ -16,7 +16,7 @@ class AbonentMapper {
     }
 
     public function add($abonent) {
-        $sql = "INSERT INTO phonebook (city, phone, name, owner, address, info, is_visible, is_company) 
+        $sql = "INSERT IGNORE INTO phonebook (city, phone, name, owner, address, info, is_visible, is_company) 
                 VALUES (:city, :phone, :name, :owner, :address, :info, :is_visible, :is_company);";
         $ab = $this->getRightAbonent($abonent);
         $c = $this->db->exec($sql, $ab) == 1;
