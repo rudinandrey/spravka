@@ -19,4 +19,14 @@ class CitiesMapper implements CitiesMapperInterface {
         $sql = "SELECT * FROM city;";
         return $this->db->exec($sql);
     }
+
+    public function getEs09Code($cityId) {
+        $sql = "SELECT es09 FROM city WHERE city_id = :id";
+        $cities = $this->db->exec($sql, ["id"=>$cityId]);
+        if(isset($cities) && count($cities) == 1) {
+            return $cities[0]["es09"];
+        } else {
+            return false;
+        }
+    }
 }

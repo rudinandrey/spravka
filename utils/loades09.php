@@ -1,44 +1,33 @@
 <?php
 
 
-namespace Spravka\Es09Mapper;
-
-
-use Spravka\Interfaces\SearchInterface;
-use Spravka\Models\Abonent;
-use Spravka\Models\Cities;
-
-class SearchMapper implements SearchInterface {
-
-    /**
-     * @var Cities
-     */
-    private Cities $city;
-    private \Base $f3;
-
-    public function __construct($f3) {
-        $this->f3 = $f3;
-        $this->city = new Cities($f3);
-    }
+class SearchMapper {
 
     public function search($city, $type, $search) {
-        return $this->searchSimple($city, $search);
+        // TODO: Implement search() method.
+        $arr = [
+            "city" => 1604000014,
+            "limit" => 50,
+            "offset" => 0,
+            "q" => $search
+        ];
+        $params = http_build_query($arr);
+        $url = "http://es09.ru:8080/api/company/search?city=1604000014&limit=40&offset=0&q=%D0%BA%D0%BE%D1%84%D0%B5";
+        $data = file_get_contents($url);
+        return $this->parse($data);
     }
 
     public function searchSimple(int $city, string $search) {
-        $cityEs09 = $this->city->getEs09Code($city);
         $arr = [
-            "city"=>$cityEs09,
-            "limit"=>50,
-            "offset"=>0,
-            "q"=>$search
+            "city" => 1604000014,
+            "limit" => 50,
+            "offset" => 0,
+            "q" => $search
         ];
         $params = http_build_query($arr);
-        $url = "http://es09.ru:8080/api/company/search?".$params;
+        $url = "http://es09.ru:8080/api/company/search?city=1604000014&limit=40&offset=0&q=%D0%BA%D0%BE%D1%84%D0%B5";
         $data = file_get_contents($url);
-        $companies = $this->parse($data);
-        $this->save($companies, $city);
-        return $companies;
+        return $this->parse($data);
     }
 
     private function parse($data) {
@@ -49,6 +38,7 @@ class SearchMapper implements SearchInterface {
         $results = $json["results"];
         foreach ($results as $result) {
             if ($result["type"] == "company" && isset($result["phones"])) {
+                print_r($result);
                 $company = [
                     "name" => $result["name"],
                     "address" => $result["addressText"],
@@ -59,6 +49,7 @@ class SearchMapper implements SearchInterface {
                     $phoneAndOwner = $this->parsePhone($phone);
                     $company["owner"] = $phoneAndOwner["owner"];
                     $company["phone"] = $phoneAndOwner["phone"];
+                    print_r($company);
                     $companies[] = $company;
                 }
             }
@@ -78,21 +69,18 @@ class SearchMapper implements SearchInterface {
 
         foreach ($parts as $part) {
             if (preg_match("/^\d+$/", trim($part)) == true) $phone = $part;
-            if (preg_match("/\((\D+.)\)/", trim($part), $m)) $result["owner"] = $m[1];
-            if (preg_match("/\(\d+.\)/", trim($part))) $phone_code = $part;
+            if (preg_match("/\((\D+.)\)/", trim($part), $m)) echo $result["owner"] = $m[1];
+            if (preg_match("/\(\d+.\)/", trim($part))) echo $phone_code = $part;
         }
         $result["phone"] = $phone_code.$phone;
         return $result;
     }
 
-    private function save($companies, $city) {
-        foreach ($companies as $company) {
-            $company["city"] = $city;
-            $company["is_visible"] = 1;
-            $company["is_company"] = 1;
-            $abonent = new Abonent($this->f3, $company);
-            $abonent->save();
-        }
-    }
-
 }
+
+
+$app = new SearchMapper();
+
+$data = $app->searchSimple(1,"");
+
+//print_r($data);

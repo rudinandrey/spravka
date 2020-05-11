@@ -12,12 +12,12 @@ class ProviderFactory {
         $this->f3 = $f3;
     }
 
-    private function getProvider(string $provider) {
+    public function getProvider(int $provider) {
         switch ($provider) {
-            case "sql":
+            case 0:
                 return new SearchMapper($this->f3->get("DB"));
                 break;
-            case "es09":
+            case 1:
                 return new \Spravka\Es09Mapper\SearchMapper($this->f3);
         }
     }

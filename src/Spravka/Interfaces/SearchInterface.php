@@ -3,5 +3,6 @@
 namespace Spravka\Interfaces;
 
 interface SearchInterface {
-    public function search(int $city, int $type, string $searchName, string $searchAddress);
+    public function search(int $city, int $type, string $string);
+    public function searchSimple(int $city, string $search);
 }

@@ -4,13 +4,13 @@
 			<div class="col-3">
 				<h3>Города</h3>
 			</div>
-			<div class="col-6">
+			<div class="col-5">
 				<h3>Справочник</h3>
 			</div>
-<!--			<div class="col-3">-->
-<!--				<a href="#" class="btn btn-link" class="{opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>-->
-<!--				<a href="#" class="btn btn-link" class="{opts.remove_mode == true ? 'remove_mode' : ''}" onclick={btn_remove_mode}>Удаление</a>-->
-<!--			</div>-->
+			<div class="col-4">
+				<a href="#" class="btn btn-link {opts.edit_mode == true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
+				<a href="#" class="btn btn-link {opts.remove_mode == true ? 'remove_mode' : ''}"  onclick={btn_remove_mode}>Удаление</a>
+			</div>
 		</div>
 		<div class="row form-group">
 			<div class="col-3">
@@ -27,7 +27,6 @@
 					<div class="col"><input type="text" id="search_element" ref="search" class="form-control" onkeyup={event_onkeyup}></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ.(PageUp)</a></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг.(PageDown)</a></div>
-
 				</div>
 				<div class="row form-group">
 					<div class="col">
@@ -37,6 +36,8 @@
 								<th>Абонент</th>
 								<th>Адрес</th>
 								<th>Телефон</th>
+								<th if={opts.edit_mode == true}>&nbsp</th>
+								<th if={opts.remove_mode == true}>&nbsp;</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -44,13 +45,63 @@
 								<td>{name}<span if={owner.trim() != ''}><br />{owner}</span></td>
 								<td>{address}</td>
 								<td>{phone}</td>
+								<td if={opts.edit_mode == true}><a href="#" class="btn-link" onclick={btn_edit_abonent}>Редактировать</a></td>
+								<td if={opts.remove_mode == true}><a href="#" class="btn-link" onclick={btn_remove_abonent}>Удалить</a></td>
 							</tr>
 							</tbody>
 						</table>
+						<div class="text-right"><a href="#" if={opts.last_params != undefined && opts.last_params.type == 1} onclick={btn_search_es09}>Проверить на es09</a></div>
 					</div>
 				</div>
 			</div>
 
+		</div>
+	</div>
+
+
+	<div class="modal" tabindex="-1" role="dialog" id="modalEdit">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Редактирование абонента</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container" if={opts.edit != undefined}>
+						<div class="row form-group">
+							<label for="name" if={opts.edit.is_company == 0}>Абонент</label>
+							<label for="name" if={opts.edit.is_company == 1}>Название организации</label>
+							<input type="text" name="name" id="name" class="form-control" value="{opts.edit.name}" ref="edit_name">
+						</div>
+						<div class="row form-group" if={opts.edit.is_company == 1}>
+							<label for="owner">Абонент</label>
+							<input type="text" name="owner" id="owner" class="form-control" value="{opts.edit.owner}" ref="edit_owner">
+						</div>
+						<div class="row form-group">
+							<label for="address">Адрес</label>
+							<input type="text" name="address" id="address" class="form-control" value="{opts.edit.address}" ref="edit_address">
+						</div>
+						<div class="row form-group">
+							<label for="phone">Телефон</label>
+							<input type="text" name="phone" id="phone" class="form-control" value="{opts.edit.phone}" ref="edit_phone">
+						</div>
+						<div class="row form-group">
+							<label for="info">Информация</label>
+							<input type="text" name="info" id="info" class="form-control" value="{opts.edit.info}" ref="edit_info">
+						</div>
+						<div class="row form-group">
+							<label for="info">Выдавать справку?</label>
+							<input type="checkbox" name="is_visible" id="is_visible" class="form-control" checked="{opts.edit.is_visible == 1}" ref="edit_is_visible">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+					<button type="button" class="btn btn-primary" onclick={btn_save_abonent}>Сохранить</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -113,17 +164,13 @@
 
 		this.btn_edit_mode = function(e) {
 			e.preventDefault();
-			if(opts.edit_mode == true) {
-				opts.edit_mode = false;
-			} else {
-				opts.edit_mode = true;
-			}
+			opts.edit_mode = opts.edit_mode == true ? false : true;
 			self.update();
 		}
 
 		this.btn_remove_mode = function(e) {
 			e.preventDefault();
-			opts.remove_mode == true ? false : true;
+			opts.remove_mode = opts.remove_mode == true ? false : true;
 			self.update();
 		}
 
@@ -171,6 +218,12 @@
 					}
 				}
 			}
+
+			if(e.keyCode == 27) {
+				self.refs.search.value = "";
+				opts.abonents = [];
+				self.update();
+			}
 		}
 
 		this.selectIndexByCityId = function(cityId) {
@@ -209,18 +262,87 @@
 			self.search(params);
 		}
 
+		this.btn_edit_abonent = function(e) {
+			e.preventDefault();
+			opts.edit = e.item;
+			self.update();
+			$('#modalEdit').modal('show');
+			console.log(e.item);
+		}
+
 		this.search = function(params) {
-			opts.app.post("/api/search", params, function(data) {
+			opts.last_params = params;
+			try {
+				if(params.search.trim() == '') throw Error("Запрос пустой, введите текст для поиска");
+
+				opts.app.post("/api/search", params, function(data) {
+					if(data.error == 0) {
+						console.log(data.result);
+						opts.abonents = data.result.abonents;
+						self.update();
+						$('#search_element').focus();
+						if(opts.abonents.length == 0) {
+							alertify.message("Данных не найдено");
+						}
+					} else {
+						alertify.error(data.result.message);
+					}
+					console.log(data);
+				});
+			} catch (e) {
+				alertify.error(e.message);
+			}
+		}
+
+		this.btn_save_abonent = function(e) {
+			e.preventDefault();
+
+			var r = this.refs;
+			var edit = {
+				id: opts.edit.id,
+				name: r.edit_name.value,
+				owner:  r.edit_owner != undefined ? r.edit_owner.value : "",
+				address: r.edit_address.value,
+				phone: r.edit_phone.value,
+				info: r.edit_info.value,
+				is_visible: r.edit_is_visible.checked == true ? 1 : 0
+			};
+
+			console.log(edit);
+
+			opts.app.post("/api/edit", edit, function(data) {
 				if(data.error == 0) {
-					console.log(data.result);
-					opts.abonents = data.result.abonents;
-					self.update();
-					$('#search_element').focus();
+					$('#modalEdit').modal('hide');
+					self.search(opts.last_params);
 				} else {
 					alertify.error(data.result.message);
 				}
-				console.log(data);
 			});
+		}
+
+		this.btn_remove_abonent = function(e) {
+			e.preventDefault();
+
+			var abonent = e.item;
+			alertify.confirm("Вы действительно хотите удалить этого абонента?", function(yep) {
+				opts.app.post("/api/remove", abonent, function(data) {
+					if(data.error == 0) {
+						self.search(opts.last_params);
+					} else {
+						alertify.error(data.result.message);
+					}
+				});
+			}, function(err) {
+				alertify.message("Спасибо что отказались от этой идеи");
+			});
+
+		}
+
+		this.btn_search_es09 = function(e) {
+			e.preventDefault();
+			var last = opts.last_params;
+			last.provider = 1;
+			self.search(last);
 		}
 	</script>
 </main>

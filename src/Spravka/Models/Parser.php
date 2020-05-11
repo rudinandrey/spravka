@@ -23,4 +23,8 @@ class Parser {
     private function getType() {
 
     }
+
+    private function getCity() {
+
+    }
 }

@@ -17,4 +17,8 @@ class Cities {
     public function getAllCities() {
         return $this->mapper->getAllCities();
     }
+
+    public function getEs09Code($cityId) {
+        return $this->mapper->getEs09Code($cityId);
+    }
 }

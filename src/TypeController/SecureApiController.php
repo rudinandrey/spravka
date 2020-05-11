@@ -8,6 +8,7 @@ use Interfaces\IController;
 
 class SecureApiController implements IController {
     private \Base $f3;
+    protected array $user;
 
     public function __construct() {
         $this->f3 = \Base::instance();
@@ -26,6 +27,7 @@ class SecureApiController implements IController {
             $this->getResult(["msg"=>"Вы не авторизованы"], 1);
             return;
         }
+        $this->user = $user->getAsArray();
     }
 
     public function getResult(array $result, int $error = 0) {
