@@ -143,7 +143,6 @@
 				opts.cities = data.result.cities;
 				self.update();
 			});
-			$('#modalEdit').modal();
 		});
 
 		this.btn_select_city = function(e) {
@@ -258,7 +257,7 @@
 		this.btn_edit_abonent = function(e) {
 			e.preventDefault();
 			opts.edit = e.item;
-			$('modalEdit').modal('show');
+			$('modalEdit').modal();
 			self.update();
 			console.log(e.item);
 		}
