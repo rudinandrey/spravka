@@ -147,7 +147,7 @@
 				console.log(opts.selected_city);
 				var ind = self.selectIndexByCityId(opts.selected_city);
 				console.log(ind);
-				if(ind > 1) {
+				if(ind > 0) {
 					ind -= 1;
 					opts.selected_city = self.selectCityIdByIndex(ind);
 					console.log(opts.selected_city);
