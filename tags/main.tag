@@ -4,11 +4,11 @@
 			<div class="col-3">
 				<h3>Города</h3>
 			</div>
-			<div class="col-6">
+			<div class="col-5">
 				<h3>Справочник</h3>
 			</div>
-			<div class="col-3">
-				<a href="#" class="btn btn-link {opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
+			<div class="col-4">
+				<a href="#" class="btn btn-link {opts.edit_mode == true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
 				<a href="#" class="btn btn-link {opts.remove_mode == true ? 'remove_mode' : ''}"  onclick={btn_remove_mode}>Удаление</a>
 			</div>
 		</div>
@@ -27,7 +27,6 @@
 					<div class="col"><input type="text" id="search_element" ref="search" class="form-control" onkeyup={event_onkeyup}></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_fiz}>Физ.(PageUp)</a></div>
 					<div class="col-auto"><a href="#" class="btn btn-success" onclick={btn_search_org}>Орг.(PageDown)</a></div>
-
 				</div>
 				<div class="row form-group">
 					<div class="col">
