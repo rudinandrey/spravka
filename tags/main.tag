@@ -219,15 +219,17 @@
 						opts.abonents = data.result.abonents;
 						self.update();
 						$('#search_element').focus();
+						if(opts.abonents == []) {
+							alertify.message("Данных не найдено");
+						}
 					} else {
 						alertify.error(data.result.message);
 					}
 					console.log(data);
 				});
 			} catch (e) {
-				alerify.error(e.message());
+				alertify.error(e.message());
 			}
-
 		}
 	</script>
 </main>
