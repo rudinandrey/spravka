@@ -22,7 +22,7 @@ class SearchMapper implements SearchInterface {
     }
 
     public function search($city, $type, $search) {
-        $this->searchSimple($city, $search);
+        return $this->searchSimple($city, $search);
     }
 
     public function searchSimple(int $city, string $search) {
