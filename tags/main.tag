@@ -8,8 +8,8 @@
 				<h3>Справочник</h3>
 			</div>
 			<div class="col-3">
-				<a href="#" class="btn btn-link" class="{opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
-<!--				<a href="#" class="btn btn-link" class="{opts.remove_mode == true ? 'remove_mode' : ''}" onclick={btn_remove_mode}>Удаление</a>-->
+				<a href="#" class="btn btn-link {opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
+<!--				<a href="#" class="btn btn-link {opts.remove_mode == true ? 'remove_mode' : ''}"  onclick={btn_remove_mode}>Удаление</a>-->
 			</div>
 		</div>
 		<div class="row form-group">
@@ -66,27 +66,29 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" if={opts.edit != undefined}>
-					<div class="row form-group">
-						<label for="name" if={opts.edit.is_company == 0}>Абонент</label>
-						<label for="name" if={opts.edit.is_company == 1}>Название организации</label>
-						<input type="text" name="name" id="name" class="form-control" value="{opts.edit.name}" ref="edit_name">
-					</div>
-					<div class="row form-group" if={opts.edit.is_company == 1}>
-						<label for="owner">Абонент</label>
-						<input type="text" name="owner" id="owner" class="form-control" value="{opts.edit.owner}" ref="edit_owner">
-					</div>
-					<div class="row form-group">
-						<label for="address">Адрес</label>
-						<input type="text" name="address" id="address" class="form-control" value="{opts.edit.address}" ref="edit_address">
-					</div>
-					<div class="row form-group">
-						<label for="phone">Телефон</label>
-						<input type="text" name="phone" id="phone" class="form-control" value="{opts.edit.phone}" ref="edit_phone">
-					</div>
-					<div class="row form-group">
-						<label for="info">Информация</label>
-						<input type="text" name="info" id="info" class="form-control" value="{opts.edit.info}" ref="edit_info">
+				<div class="modal-body">
+					<div class="container" if={opts.edit != undefined}>
+						<div class="row form-group">
+							<label for="name" if={opts.edit.is_company == 0}>Абонент</label>
+							<label for="name" if={opts.edit.is_company == 1}>Название организации</label>
+							<input type="text" name="name" id="name" class="form-control" value="{opts.edit.name}" ref="edit_name">
+						</div>
+						<div class="row form-group" if={opts.edit.is_company == 1}>
+							<label for="owner">Абонент</label>
+							<input type="text" name="owner" id="owner" class="form-control" value="{opts.edit.owner}" ref="edit_owner">
+						</div>
+						<div class="row form-group">
+							<label for="address">Адрес</label>
+							<input type="text" name="address" id="address" class="form-control" value="{opts.edit.address}" ref="edit_address">
+						</div>
+						<div class="row form-group">
+							<label for="phone">Телефон</label>
+							<input type="text" name="phone" id="phone" class="form-control" value="{opts.edit.phone}" ref="edit_phone">
+						</div>
+						<div class="row form-group">
+							<label for="info">Информация</label>
+							<input type="text" name="info" id="info" class="form-control" value="{opts.edit.info}" ref="edit_info">
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
