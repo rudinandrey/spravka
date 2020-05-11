@@ -153,11 +153,15 @@
 			}
 
 			if(e.keyCode == 40) {
-				var ind = self.selectIndexByCityId(opts.selected_city);
-				if(ind < opts.cities.length) {
-					ind += 1;
-					opts.selected_city = self.selectCityIdByIndex(ind);
-					self.update();
+				if(opts.selected_city == 0) {
+					opts.selected_city = self.selectCityIdByIndex(0);
+				} else {
+					var ind = self.selectIndexByCityId(opts.selected_city);
+					if(ind < opts.cities.length) {
+						ind += 1;
+						opts.selected_city = self.selectCityIdByIndex(ind);
+						self.update();
+					}
 				}
 			}
 		}
