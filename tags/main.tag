@@ -36,10 +36,10 @@
 							</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
+							<tr each={opts.abonents}>
+								<td>{name}<span if={owner.trim() != ''}><br />{owner}</span></td>
+								<td>{address}</td>
+								<td>{phone}</td>
 							</tr>
 							</tbody>
 						</table>
