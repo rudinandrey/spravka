@@ -221,6 +221,7 @@
 
 			if(e.keyCode == 27) {
 				self.refs.search.value = "";
+				opts.abonents = [];
 				self.update();
 			}
 		}
