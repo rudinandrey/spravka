@@ -37,8 +37,6 @@ class Api extends \TypeController\SecureApiController {
         } catch (Exception $e) {
             $this->getResult(["message"=>$e->getMessage()], 1);
         }
-
-        $this->getResult(["post"=>$post]);
     }
 
     public function remove($f3) {
@@ -50,6 +48,5 @@ class Api extends \TypeController\SecureApiController {
         } catch (Exception $e) {
             $this->getResult(["message"=>$e->getMessage()], 1);
         }
-        $this->getResult(["post"=>$post]);
     }
 }
