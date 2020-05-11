@@ -32,7 +32,7 @@ class Abonent {
     public function remove(int $user_id) {
         $abonent = $this->abonent;
         $abonent["user_id"] = $user_id;
-        return $this->mapper->remove($this->abonent);
+        return $this->mapper->remove($abonent);
     }
 
     private function prepare(array $abonent) {

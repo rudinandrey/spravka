@@ -38,7 +38,7 @@ class AbonentMapper {
 
     public function remove(array $abonent) {
         $sql = "DELETE FROM phonebook WHERE id = :id";
-        $c = $this->db->exec($sql, ["id"=>$abonent]);
+        $c = $this->db->exec($sql, ["id"=>$abonent["id"]]);
         if($c == 1) {
             $abonent["data"] = date("Y-m-d H:s:i");
             $this->saveRemovedAbonent($abonent);
