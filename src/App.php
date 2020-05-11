@@ -27,7 +27,7 @@ class App {
         $this->connectDb();
 
         $this->f3->set("AUTOLOAD", "app/;classes/;");
-        $this->f3->set("ROOT", ".");
+        $this->f3->set("ROOT", "/var/www/html");
         $this->f3->set("UI", "./ui/");
 
         $this->routes();
