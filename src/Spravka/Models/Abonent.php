@@ -32,7 +32,11 @@ class Abonent {
     public function remove(int $user_id) {
         $abonent = $this->abonent;
         $abonent["user_id"] = $user_id;
-        return $this->mapper->remove($abonent);
+        try {
+            return $this->mapper->remove($abonent);
+        } catch (\Exception $e) {
+            return ["message"=>$e->getMessage(), "abonent"=>$abonent];
+        }
     }
 
     private function prepare(array $abonent) {
