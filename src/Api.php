@@ -30,12 +30,26 @@ class Api extends \TypeController\SecureApiController {
     public function edit($f3) {
         $post = $f3->get("POST");
 
+        try {
+            $abonent = new \Spravka\Models\Abonent($f3, $post);
+            $c = $abonent->save();
+            $this->getResult(["cnt"=>$c]);
+        } catch (Exception $e) {
+            $this->getResult(["message"=>$e->getMessage()], 1);
+        }
+
         $this->getResult(["post"=>$post]);
     }
 
     public function remove($f3) {
         $post = $f3->get("POST");
-
+        try {
+            $abonent = new \Spravka\Models\Abonent($f3, $post);
+            $c = $abonent->remove($this->user["user_id"]);
+            $this->getResult(["cnt"=>$c]);
+        } catch (Exception $e) {
+            $this->getResult(["message"=>$e->getMessage()], 1);
+        }
         $this->getResult(["post"=>$post]);
     }
 }
