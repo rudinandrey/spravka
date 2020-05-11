@@ -72,8 +72,8 @@ class SearchMapper implements SearchInterface {
 
         foreach ($parts as $part) {
             if (preg_match("/^\d+$/", trim($part)) == true) $phone = $part;
-            if (preg_match("/\((\D+.)\)/", trim($part), $m)) echo $result["owner"] = $m[1];
-            if (preg_match("/\(\d+.\)/", trim($part))) echo $phone_code = $part;
+            if (preg_match("/\((\D+.)\)/", trim($part), $m)) $result["owner"] = $m[1];
+            if (preg_match("/\(\d+.\)/", trim($part))) $phone_code = $part;
         }
         $result["phone"] = $phone_code.$phone;
         return $result;
