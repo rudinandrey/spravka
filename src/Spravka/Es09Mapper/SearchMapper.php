@@ -37,7 +37,7 @@ class SearchMapper implements SearchInterface {
         $url = "http://es09.ru:8080/api/company/search?".$params;
         $data = file_get_contents($url);
         $companies = $this->parse($data);
-        $this->save($companies);
+        $this->save($companies, $city);
         return $companies;
     }
 
@@ -85,8 +85,9 @@ class SearchMapper implements SearchInterface {
         return $result;
     }
 
-    private function save($companies) {
+    private function save($companies, $city) {
         foreach ($companies as $company) {
+            $company["city"] = $city;
             $abonent = new Abonent($this->f3, $company);
             $abonent->save();
         }
