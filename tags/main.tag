@@ -9,7 +9,7 @@
 			</div>
 			<div class="col-3">
 				<a href="#" class="btn btn-link {opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
-<!--				<a href="#" class="btn btn-link {opts.remove_mode == true ? 'remove_mode' : ''}"  onclick={btn_remove_mode}>Удаление</a>-->
+				<a href="#" class="btn btn-link {opts.remove_mode == true ? 'remove_mode' : ''}"  onclick={btn_remove_mode}>Удаление</a>
 			</div>
 		</div>
 		<div class="row form-group">
@@ -38,6 +38,7 @@
 								<th>Адрес</th>
 								<th>Телефон</th>
 								<th if={opts.edit_mode == true}>&nbsp</th>
+								<th if={opts.remove_mode == true}>&nbsp;</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -46,6 +47,7 @@
 								<td>{address}</td>
 								<td>{phone}</td>
 								<td if={opts.edit_mode == true}><a href="#" class="btn-link" onclick={btn_edit_abonent}>Редактировать</a></td>
+								<td if={opts.remove_mode == true}><a href="#" class="btn-link" onclick={btn_remove_abonent}>Удалить</a></td>
 							</tr>
 							</tbody>
 						</table>
@@ -267,6 +269,7 @@
 		}
 
 		this.search = function(params) {
+			opts.last_params = params;
 			try {
 				if(params.search.trim() == '') throw Error("Запрос пустой, введите текст для поиска");
 
@@ -303,6 +306,33 @@
 			};
 
 			console.log(edit);
+
+			opts.app.post("/api/edit", edit, function(data) {
+				if(data.error == 0) {
+					$('#modalEdit').modal('hide');
+					self.search(opts.last_params);
+				} else {
+					alertify.error(data.result.message);
+				}
+			});
+		}
+
+		this.btn_remove_abonent = function(e) {
+			e.preventDefault();
+
+			var abonent = e.item;
+			alertify.confirm("Вы действительно хотите удалить этого абонента?", function(yep) {
+				opts.app.post("/api/remove", abonent, function(data) {
+					if(data.error == 0) {
+						self.search(opts.last_params);
+					} else {
+						alertify.error(data.result.message);
+					}
+				});
+			}, function(err) {
+				alertify.message("Спасибо что отказались от этой идеи");
+			});
+
 		}
 	</script>
 </main>
