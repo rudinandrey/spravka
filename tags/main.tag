@@ -7,10 +7,10 @@
 			<div class="col-6">
 				<h3>Справочник</h3>
 			</div>
-<!--			<div class="col-3">-->
-<!--				<a href="#" class="btn btn-link" class="{opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>-->
+			<div class="col-3">
+				<a href="#" class="btn btn-link" class="{opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
 <!--				<a href="#" class="btn btn-link" class="{opts.remove_mode == true ? 'remove_mode' : ''}" onclick={btn_remove_mode}>Удаление</a>-->
-<!--			</div>-->
+			</div>
 		</div>
 		<div class="row form-group">
 			<div class="col-3">
@@ -37,6 +37,7 @@
 								<th>Абонент</th>
 								<th>Адрес</th>
 								<th>Телефон</th>
+								<th if={opts.edit_mode == true}>&nbsp</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -44,6 +45,7 @@
 								<td>{name}<span if={owner.trim() != ''}><br />{owner}</span></td>
 								<td>{address}</td>
 								<td>{phone}</td>
+								<td if={opts.edit_mode == true}><a href="#" class="btn-link" onclick={btn_edit_abonent}>Редактировать</a></td>
 							</tr>
 							</tbody>
 						</table>
@@ -56,7 +58,7 @@
 
 
 	<div class="modal" tabindex="-1" role="dialog" id="modalEdit">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Редактирование абонента</h5>
@@ -248,6 +250,14 @@
 				search: self.refs.search.value
 			};
 			self.search(params);
+		}
+
+		this.btn_edit_abonent = function(e) {
+			e.preventDefault();
+			opts.edit = e.item;
+			$('modalEdit').modal('show');
+			self.update();
+			console.log(e.item);
 		}
 
 		this.search = function(params) {
