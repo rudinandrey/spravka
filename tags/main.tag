@@ -50,6 +50,7 @@
 							</tr>
 							</tbody>
 						</table>
+						<div class="text-right"><a href="#" if={opts.last_params != undefined && opts.last_params.type == 1} onclick={btn_search_es09}>Проверить на es09</a></div>
 					</div>
 				</div>
 			</div>
@@ -329,6 +330,13 @@
 				alertify.message("Спасибо что отказались от этой идеи");
 			});
 
+		}
+
+		this.btn_search_es09 = function(e) {
+			e.preventDefault();
+			var last = opts.last_params;
+			last.privider = 1;
+			self.search(last);
 		}
 	</script>
 </main>
