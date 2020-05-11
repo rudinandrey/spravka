@@ -48,8 +48,8 @@ class AbonentMapper {
 
     private function saveRemovedAbonent(array $abonent) {
         unset($abonent["id"]);
-        $sql = "INSERT INTO phonebook_removed (city, phone, name, owner, address, info, is_company, data, user_id) 
-                VALUES (:city, :phone, :name, :owner, :address, :info, :is_company, :data, :user_id);";
+        $sql = "INSERT INTO phonebook_removed (city, phone, name, owner, address, info, is_company, is_visible, data, user_id) 
+                VALUES (:city, :phone, :name, :owner, :address, :info, :is_company, :is_visible, :data, :user_id);";
         return $this->db->exec($sql, $abonent);
     }
 
