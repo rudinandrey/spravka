@@ -13,9 +13,10 @@ class Search {
      */
     private SearchMapper $mapper;
 
-    public function __construct(\Base $f3) {
+    public function __construct(\Base $f3, $provider) {
         $this->f3 = $f3;
-        $this->mapper = new SearchMapper($f3->get("DB"));
+        $factory = new ProviderFactory($f3);
+        $this->mapper = $factory->getProvider($provider);
     }
 
     public function search($city, $type, $search, $provider) {
@@ -25,9 +26,7 @@ class Search {
             // используем простой поиск по всем типам
             return $this->mapper->searchSimple($city, $search);
         } else {
-            return $this->mapper->searchWithType($city, $type, $search);
+            return $this->mapper->search($city, $type, $search);
         }
     }
-
-
 }
