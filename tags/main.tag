@@ -64,7 +64,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
+				<div class="modal-body" if={opts.edit != undefined}>
 					<div class="row form-group">
 						<label for="name" if={opts.edit.is_company == 0}>Абонент</label>
 						<label for="name" if={opts.edit.is_company == 1}>Название организации</label>
