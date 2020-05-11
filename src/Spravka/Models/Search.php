@@ -20,9 +20,13 @@ class Search {
 
     public function search($city, $type, $search, $provider) {
         if($city == 0) throw new \Exception("Не выбран город");
-//        if($type == -1) throw new \Exception("Не выбран тип абонента");
 
-        return $this->mapper->searchSimple($city, $search);
+        if($type == -1) {
+            // используем простой поиск по всем типам
+            return $this->mapper->searchSimple($city, $search);
+        } else {
+            return $this->mapper->searchWithType($city, $type, $search);
+        }
     }
 
 
