@@ -159,6 +159,8 @@
 			opts.app.post("/api/search", params, function(data) {
 				if(data.error == 0) {
 					console.log(data.result);
+					opts.abonents = data.result.abonents;
+					self.update();
 				} else {
 					alertify.error(data.result.message);
 				}
