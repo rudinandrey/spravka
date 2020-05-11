@@ -157,6 +157,11 @@
 
 		this.search = function(params) {
 			opts.app.post("/api/search", params, function(data) {
+				if(data.error == 0) {
+					console.log(data.result);
+				} else {
+					alertify.error(data.result.message);
+				}
 				console.log(data);
 			});
 		}
