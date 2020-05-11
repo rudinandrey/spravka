@@ -170,15 +170,17 @@
 		}
 
 		this.selectIndexByCityId = function(cityId) {
+			let res = 0;
 			opts.cities.forEach(function(el, index) {
-				if(el.city_id == cityId) return index;
+				if(el.city_id == cityId) res = index;
 			});
+			return res;
 		}
 
 		this.selectCityIdByIndex = function(index) {
 			let res = 0;
 			opts.cities.forEach(function(el, i) {
-				if(index == i) return res = el['city_id'];
+				if(index == i) res = el['city_id'];
 			});
 			return res;
 		}
