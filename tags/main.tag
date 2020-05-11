@@ -218,6 +218,11 @@
 					}
 				}
 			}
+
+			if(e.keyCode == 27) {
+				self.refs.search.value = "";
+				self.update();
+			}
 		}
 
 		this.selectIndexByCityId = function(cityId) {
