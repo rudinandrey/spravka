@@ -210,17 +210,24 @@
 		}
 
 		this.search = function(params) {
-			opts.app.post("/api/search", params, function(data) {
-				if(data.error == 0) {
-					console.log(data.result);
-					opts.abonents = data.result.abonents;
-					self.update();
-					$('#search_element').focus();
-				} else {
-					alertify.error(data.result.message);
-				}
-				console.log(data);
-			});
+			try {
+				if(params.search.trim() == '') throw Error("Запрос пустой, введите текст для поиска");
+
+				opts.app.post("/api/search", params, function(data) {
+					if(data.error == 0) {
+						console.log(data.result);
+						opts.abonents = data.result.abonents;
+						self.update();
+						$('#search_element').focus();
+					} else {
+						alertify.error(data.result.message);
+					}
+					console.log(data);
+				});
+			} catch (e) {
+				alerify.error(e.message());
+			}
+
 		}
 	</script>
 </main>
