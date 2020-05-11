@@ -91,7 +91,7 @@
 						</div>
 						<div class="row form-group">
 							<label for="info">Выдавать справку?</label>
-							<input type="text" name="is_visible" id="is_visible" class="form-control" checked="{opts.edit.is_visible == 1}" ref="edit_is_visible">
+							<input type="checkbox" name="is_visible" id="is_visible" class="form-control" checked="{opts.edit.is_visible == 1}" ref="edit_is_visible">
 						</div>
 					</div>
 				</div>
@@ -295,7 +295,7 @@
 			var r = this.refs;
 			var edit = {
 				name: r.edit_name.value,
-				owner: r.edit_owner.value,
+				owner:  r.edit_owner != undefined ? r.edit_owner.value : "",
 				address: r.edit_address.value,
 				phone: r.edit_phone.value,
 				info: r.edit_info.value,
