@@ -7,10 +7,10 @@
 			<div class="col-6">
 				<h3>Справочник</h3>
 			</div>
-			<div class="col-3">
-				<a href="#" class="btn btn-link" class="{opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>
-				<a href="#" class="btn btn-link" class="{opts.remove_mode == true ? 'remove_mode' : ''}" onclick={btn_remove_mode}>Удаление</a>
-			</div>
+<!--			<div class="col-3">-->
+<!--				<a href="#" class="btn btn-link" class="{opts.edit_mode== true ? 'edit_mode' : ''}" onclick={btn_edit_mode}>Редактирование</a>-->
+<!--				<a href="#" class="btn btn-link" class="{opts.remove_mode == true ? 'remove_mode' : ''}" onclick={btn_remove_mode}>Удаление</a>-->
+<!--			</div>-->
 		</div>
 		<div class="row form-group">
 			<div class="col-3">
