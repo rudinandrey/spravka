@@ -164,17 +164,13 @@
 
 		this.btn_edit_mode = function(e) {
 			e.preventDefault();
-			if(opts.edit_mode == true) {
-				opts.edit_mode = false;
-			} else {
-				opts.edit_mode = true;
-			}
+			opts.edit_mode = opts.edit_mode == true ? false : true;
 			self.update();
 		}
 
 		this.btn_remove_mode = function(e) {
 			e.preventDefault();
-			opts.remove_mode == true ? false : true;
+			opts.remove_mode = opts.remove_mode == true ? false : true;
 			self.update();
 		}
 
@@ -297,6 +293,7 @@
 
 			var r = this.refs;
 			var edit = {
+				id: opts.edit.id,
 				name: r.edit_name.value,
 				owner:  r.edit_owner != undefined ? r.edit_owner.value : "",
 				address: r.edit_address.value,
