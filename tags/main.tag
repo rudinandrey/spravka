@@ -89,11 +89,15 @@
 							<label for="info">Информация</label>
 							<input type="text" name="info" id="info" class="form-control" value="{opts.edit.info}" ref="edit_info">
 						</div>
+						<div class="row form-group">
+							<label for="info">Выдавать справку?</label>
+							<input type="text" name="is_visible" id="is_visible" class="form-control" checked="{opts.edit.is_visible == 1}" ref="edit_is_visible">
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-					<button type="button" class="btn btn-primary">Сохранить</button>
+					<button type="button" class="btn btn-primary" onclick={btn_save_abonent}>Сохранить</button>
 				</div>
 			</div>
 		</div>
@@ -283,6 +287,22 @@
 			} catch (e) {
 				alertify.error(e.message);
 			}
+		}
+
+		this.btn_save_abonent = function(e) {
+			e.preventDefault();
+
+			var r = this.refs;
+			var edit = {
+				name: r.edit_name.value,
+				owner: r.edit_owner.value,
+				address: r.edit_address.value,
+				phone: r.edit_phone.value,
+				info: r.edit_info.value,
+				is_visible: r.edit_is_visible.value
+			};
+
+			console.log(edit);
 		}
 	</script>
 </main>
