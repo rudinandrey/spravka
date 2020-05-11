@@ -257,8 +257,8 @@
 		this.btn_edit_abonent = function(e) {
 			e.preventDefault();
 			opts.edit = e.item;
-			$('modalEdit').modal();
 			self.update();
+			$('#modalEdit').modal('show');
 			console.log(e.item);
 		}
 
