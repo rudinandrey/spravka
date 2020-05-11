@@ -25,6 +25,17 @@ class Api extends \TypeController\SecureApiController {
         } catch (Exception $e) {
             $this->getResult(["message"=>$e->getMessage()], 1);
         }
+    }
 
+    public function edit($f3) {
+        $post = $f3->get("POST");
+
+        $this->getResult(["post"=>$post]);
+    }
+
+    public function remove($f3) {
+        $post = $f3->get("POST");
+
+        $this->getResult(["post"=>$post]);
     }
 }
