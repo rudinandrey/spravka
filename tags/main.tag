@@ -144,10 +144,13 @@
 			}
 
 			if(e.keyCode == 38) {
+				console.log(opts.selected_city);
 				var ind = self.selectIndexByCityId(opts.selected_city);
+				console.log(ind);
 				if(ind > 1) {
 					ind -= 1;
 					opts.selected_city = self.selectCityIdByIndex(ind);
+					console.log(opts.selected_city);
 					self.update();
 				}
 			}
@@ -173,9 +176,11 @@
 		}
 
 		this.selectCityIdByIndex = function(index) {
+			let res = 0;
 			opts.cities.forEach(function(el, i) {
-				if(index == i) return el.city_id;
+				if(index == i) return res = el['city_id'];
 			});
+			return res;
 		}
 
 		this.btn_search_org = function(e) {
