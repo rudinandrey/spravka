@@ -88,6 +88,8 @@ class SearchMapper implements SearchInterface {
     private function save($companies, $city) {
         foreach ($companies as $company) {
             $company["city"] = $city;
+            $company["is_visible"] = 1;
+            $company["is_company"] = 1;
             $abonent = new Abonent($this->f3, $company);
             $abonent->save();
         }
