@@ -143,6 +143,7 @@
 				opts.cities = data.result.cities;
 				self.update();
 			});
+			$('#modalEdit').modal();
 		});
 
 		this.btn_select_city = function(e) {
