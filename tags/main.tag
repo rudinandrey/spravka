@@ -228,7 +228,7 @@
 					console.log(data);
 				});
 			} catch (e) {
-				alertify.error(e.message());
+				alertify.error(e.message);
 			}
 		}
 	</script>
