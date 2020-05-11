@@ -335,7 +335,7 @@
 		this.btn_search_es09 = function(e) {
 			e.preventDefault();
 			var last = opts.last_params;
-			last.privider = 1;
+			last.provider = 1;
 			self.search(last);
 		}
 	</script>
