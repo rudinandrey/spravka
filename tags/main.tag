@@ -299,7 +299,7 @@
 				address: r.edit_address.value,
 				phone: r.edit_phone.value,
 				info: r.edit_info.value,
-				is_visible: r.edit_is_visible.value
+				is_visible: r.edit_is_visible.checked == true ? 1 : 0
 			};
 
 			console.log(edit);
