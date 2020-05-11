@@ -17,9 +17,14 @@ class Api extends \TypeController\SecureApiController {
         $city = $f3->get("POST.city");
         $type = $f3->get("POST.type");
         $search = $f3->get("POST.search");
-        $provider = $f3->get("POST.provider");
 
+        $model = new \Spravka\Models\Search($f3);
+        try {
+            $abonents = $model->search($city, $type, $search, 0);
+            $this->getResult(["params"=>$f3->get("POST"), "abonents"=>$abonents]);
+        } catch (Exception $e) {
+            $this->getResult(["message"=>$e->getMessage()], 1);
+        }
 
-        $this->getResult(["params"=>$f3->get("POST")]);
     }
 }
