@@ -133,6 +133,15 @@
 				};
 				self.search(params);
 			}
+			if(e.keyCode == 33) {
+				// поиск по физикам
+				self.btn_search_fiz(e);
+			}
+
+			if(e.keyCode == 34) {
+				// поиск по юрикам
+				self.btn_search_org(e);
+			}
 		}
 
 		this.btn_search_org = function(e) {
