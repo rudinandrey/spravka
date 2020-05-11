@@ -63,7 +63,8 @@
                 'address' : r.address.value,
                 'phone' : r.phone.value,
                 'city': tags.main.opts.selected_city,
-                'type' : 0
+                'is_company' : 0,
+                'is_visible' : 1
             };
 
             try {

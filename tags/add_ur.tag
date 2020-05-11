@@ -74,7 +74,8 @@
                 'address' : r.address.value,
                 'phone' : r.phone.value,
                 'city' : tags.main.opts.selected_city,
-                'type' : 1
+                'is_company' : 1,
+                'is_visible' : 1
             };
 
             try {

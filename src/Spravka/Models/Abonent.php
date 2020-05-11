@@ -17,17 +17,26 @@ class Abonent {
     }
 
     public function save() {
-        return $this->mapper->add($this->abonent);
+        if($this->abonent["id"] == null) {
+            return $this->mapper->add($this->abonent);
+        } else {
+            return $this->mapper->save($this->abonent);
+        }
+
     }
 
     public function get() {
         return $this->abonent;
     }
 
+    public function remove(int $user_id) {
+        $abonent = $this->abonent;
+        $abonent["user_id"] = $user_id;
+        return $this->mapper->remove($this->abonent);
+    }
+
     private function prepare(array $abonent) {
         if(!isset($abonent["owner"])) $abonent["owner"] = "";
-        $abonent["is_visible"] = 1;
-        $abonent["is_company"] = $abonent["type"];
         return $abonent;
     }
 }
