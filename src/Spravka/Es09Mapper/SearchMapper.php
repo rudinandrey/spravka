@@ -41,15 +41,15 @@ class SearchMapper implements SearchInterface {
         $companies = [];
 
         $results = $json["results"];
-        foreach($results as $result) {
-            if($result["type"] == "company") {
+        foreach ($results as $result) {
+            if ($result["type"] == "company" && isset($result["phones"])) {
                 $company = [
                     "name" => $result["name"],
                     "address" => $result["addressText"],
-                    "info" => $result["info"]
+                    "info" => isset($result["info"]) ? $result["info"] : ""
                 ];
                 $phones = $result["phones"];
-                foreach($phones as $phone) {
+                foreach ($phones as $phone) {
                     $phoneAndOwner = $this->parsePhone($phone);
                     $company["owner"] = $phoneAndOwner["owner"];
                     $company["phone"] = $phoneAndOwner["phone"];
@@ -62,14 +62,20 @@ class SearchMapper implements SearchInterface {
 
     private function parsePhone($phone) {
         $result = [
-            "phone"=>"",
-            "owner"=>""
+            "phone" => "",
+            "owner" => ""
         ];
         $parts = explode(" ", $phone);
-        foreach($parts as $part) {
-            if(preg_match("/^\d+$/", trim($part)) == true) $result["phone"] = $part;
-            if(preg_match("/\((\D+.)\)/", trim($part), $m)) echo $result["owner"] = $m[1];
+
+        $phone = "";
+        $phone_code = "";
+
+        foreach ($parts as $part) {
+            if (preg_match("/^\d+$/", trim($part)) == true) $phone = $part;
+            if (preg_match("/\((\D+.)\)/", trim($part), $m)) echo $result["owner"] = $m[1];
+            if (preg_match("/\(\d+.\)/", trim($part))) echo $phone_code = $part;
         }
+        $result["phone"] = $phone_code.$phone;
         return $result;
     }
 
