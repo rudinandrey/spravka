@@ -222,6 +222,7 @@
 			if(e.keyCode == 27) {
 				self.refs.search.value = "";
 				opts.abonents = [];
+				opts.last_params = undefined;
 				self.update();
 			}
 		}
