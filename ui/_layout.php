@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/alertify.min.css">
 	<link rel="stylesheet" href="/fonts/Blushes/stylesheet.css">
+    <link rel="stylesheet" href="/fonts/Houschka/houschka.css">
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
