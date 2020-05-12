@@ -9,6 +9,9 @@ SET NAMES utf8mb4;
 CREATE TABLE `city` (
                         `city_id` int NOT NULL AUTO_INCREMENT,
                         `city_name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+                        `phone_length` int NOT NULL,
+                        `phone_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                        `es09` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
                         PRIMARY KEY (`city_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -25,11 +28,34 @@ CREATE TABLE `phonebook` (
                              `is_company` int NOT NULL DEFAULT '0',
                              PRIMARY KEY (`id`),
                              UNIQUE KEY `id` (`id`),
+                             UNIQUE KEY `r` (`city`,`name`,`address`,`phone`),
                              KEY `c` (`city`),
                              KEY `key_phone` (`phone`),
                              KEY `key_name` (`name`),
                              KEY `key_owner` (`owner`),
                              KEY `key_address` (`address`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE `phonebook_removed` (
+                                     `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                     `city` int NOT NULL,
+                                     `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                                     `name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                                     `owner` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                                     `address` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                                     `info` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+                                     `is_visible` int NOT NULL DEFAULT '1',
+                                     `is_company` int NOT NULL DEFAULT '0',
+                                     `data` datetime DEFAULT NULL,
+                                     `user_id` int DEFAULT NULL,
+                                     PRIMARY KEY (`id`),
+                                     UNIQUE KEY `id` (`id`),
+                                     KEY `c` (`city`),
+                                     KEY `key_phone` (`phone`),
+                                     KEY `key_name` (`name`),
+                                     KEY `key_owner` (`owner`),
+                                     KEY `key_address` (`address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -46,6 +72,7 @@ CREATE TABLE `user` (
                         `password` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
                         `username` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
                         `token` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                        `last_auth` timestamp NULL DEFAULT NULL,
                         PRIMARY KEY (`user_id`),
                         UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -58,4 +85,4 @@ CREATE TABLE `user_in_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- 2020-05-08 13:22:49
+-- 2020-05-12 17:49:23
