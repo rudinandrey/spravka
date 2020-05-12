@@ -1,0 +1,47 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - "/home/{user}/spravka/app:/var/www/html"
+    links:
+      - "db:db"
+    depends_on:
+      - db
+    environment:
+      MYSQL_DATABASE: spravka
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    restart: always
+  test:
+    build: .
+    ports:
+      - "8001:80"
+    volumes:
+      - "/home/{user}/spravka/test:/var/www/html"
+    links:
+      - "db:db"
+    depends_on:
+      - db
+    environment:
+      MYSQL_DATABASE: spravka
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    restart: always
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf
+  8mb4_unicode_ci
+restart: always
+environment:
+  MYSQL_ROOT_PASSWORD: password
+  MYSQL_DATABASE: spravka
+volumes:
+  - ./data:/var/lib/mysql
+adminer:
+  image: adminer
+  restart: always
+  ports:
+    - 8888:8080
